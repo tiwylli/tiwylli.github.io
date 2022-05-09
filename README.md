@@ -1,7 +1,7 @@
 - 👋 Hi, I’m Wylliam
 - 👀 I’m interested in finance, the great outdoors and anime
-- 🌱 I’m currently learning C/AL and Microsoft Dynamics 365 Business Central
-- 💞️ I’m interning at Vokeso
+- 🌱 I’m currently learning Vue.JS
+- 💞️ I’m interning at Technologies Nter (Loto-Québec)
 - 📫 You can reach me via email : wylliam.cantin.charawi@gmail.com
 
 <!---
