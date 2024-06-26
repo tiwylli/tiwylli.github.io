@@ -1,7 +1,7 @@
 - 👋 Hi, I’m Wylliam
 - 👀 I’m interested in finance, the great outdoors and anime
-- 🌱 I’m currently learning Vue.JS
-- 💞️ I’m interning at Technologies Nter (Loto-Québec)
+- 🌱 I’m currently learning about Computer Vision and Graphics applied to 3D Reconstruction
+- 💞️ I’m interning at Kyushu University in the CV&G Lab
 - 📫 You can reach me via email : wylliam.cantin.charawi@gmail.com
 
 <!---
