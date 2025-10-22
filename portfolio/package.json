@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "export": "next build && next export",
+    "export:docs": "npm run export && rm -rf ../docs && mkdir -p ../docs && cp -r out/* ../docs/"
   },
   "dependencies": {
     "@heroui/accordion": "2.2.24",
