@@ -34,15 +34,24 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
+          # Prefer yarn when yarn.lock exists, otherwise fall back to npm.
           if [ -f "${{ github.workspace }}/portfolio/yarn.lock" ]; then
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
             exit 0
-          elif [ -f "${{ github.workspace }}/portfolio/package.json" ]; then
+          elif [ -f "${{ github.workspace }}/portfolio/package-lock.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
+            # Use 'ci' when package-lock.json exists in CI for reproducible installs
             echo "command=ci" >> $GITHUB_OUTPUT
-            echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+            # Use 'npm run' for scripts
+            echo "runner=npm run" >> $GITHUB_OUTPUT
+            exit 0
+          elif [ -f "${{ github.workspace }}/portfolio/package.json" ]; then
+            # No lockfile found, still treat as npm
+            echo "manager=npm" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=npm run" >> $GITHUB_OUTPUT
             exit 0
           else
             echo "Unable to determine package manager"
@@ -52,8 +61,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          # enable dependency caching for npm or yarn depending on the project
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          cache-dependency-path: portfolio/package-lock.json
+          # Use both lockfiles in the cache dependency path so changes to either will bust cache
+          cache-dependency-path: |
+            portfolio/package-lock.json
+            portfolio/yarn.lock
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
@@ -75,9 +88,23 @@ jobs:
       - name: Install dependencies
         working-directory: ./portfolio
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Build with Next.js
+      - name: Build and export static site
         working-directory: ./portfolio
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        # Ensure we produce a static `out/` directory for GitHub Pages.
+        # If using npm, runner is 'npm run' so call the export script. For yarn, use 'yarn export'.
+        run: |
+          if [ "${{ steps.detect-package-manager.outputs.manager }}" = "yarn" ]; then
+            yarn install --frozen-lockfile || yarn install
+            yarn export
+          else
+            # npm
+            if [ -f package-lock.json ]; then
+              npm ci
+            else
+              npm install
+            fi
+            npm run export
+          fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
