@@ -16,15 +16,46 @@ You can click the Preview link to take a look at your changes.
 
 ## Portfolio (GitHub Pages)
 
-The `portfolio/` folder contains a Next.js + HeroUI app. To publish it on GitHub Pages as the site served from this repository (instead of the root `index.html`), export it as static files and copy them into the repo `docs/` folder:
+The `portfolio/` folder contains a Next.js + HeroUI app that is automatically deployed to GitHub Pages.
+
+### Automatic Deployment
+
+This repository uses GitHub Actions to automatically build and deploy the portfolio app:
+
+- **Workflow**: `.github/workflows/nextjs.yml`
+- **Trigger**: Automatically runs on every push to the `main` branch
+- **Deployment**: Uses GitHub Pages official deployment action
+
+### Setup Instructions
+
+1. **Enable GitHub Pages** in your repository settings:
+   - Go to **Settings** → **Pages**
+   - Under **Source**, select **GitHub Actions**
+
+2. **Push to main branch**: The workflow will automatically build and deploy your app
+
+3. **Access your site**: Your portfolio will be available at `https://tiwylli.github.io/`
+
+### Local Development
+
+To run the portfolio app locally:
 
 ```bash
 cd portfolio
 npm install
-npm run export:docs
-git add ../docs && git commit -m "Add exported portfolio for GitHub Pages" && git push
+npm run dev
 ```
 
-After pushing, go to your repository Settings -> Pages and set the source to "main branch" and the folder to `/docs`.
+Visit `http://localhost:3000` to see your app.
 
-If you'd prefer an automated deploy, consider using a GitHub Actions workflow or the `gh-pages` package to publish to the `gh-pages` branch instead.
+### Manual Build
+
+To manually build and export the static site:
+
+```bash
+cd portfolio
+npm install
+npm run export
+```
+
+The static files will be generated in `portfolio/out/`.
