@@ -63,10 +63,8 @@ jobs:
           node-version: "20"
           # enable dependency caching for npm or yarn depending on the project
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          # Use both lockfiles in the cache dependency path so changes to either will bust cache
-          cache-dependency-path: |
-            portfolio/package-lock.json
-            portfolio/yarn.lock
+          # Only point at the lockfile that exists for the detected package manager.
+          cache-dependency-path: ${{ steps.detect-package-manager.outputs.manager == 'yarn' && 'portfolio/yarn.lock' || 'portfolio/package-lock.json' }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
