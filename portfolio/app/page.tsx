@@ -1,15 +1,13 @@
-import AboutMeSection from "@/components/AboutMeSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import LandingHero from "@/components/LandingHero";
-import ProjectsSection from "@/components/ProjectsSection";
+import BackgroundGrid from "@/components/BackgroundGrid";
+import HeroSection from "@/components/HeroSection";
+import Navbar from "@/components/Navbar";
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col">
-      <LandingHero />
-      <AboutMeSection />
-      <ProjectsSection limit={2} />
-      <ExperienceSection limit={2} />
+    <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#dbe8ff] via-white to-white text-slate-900">
+      <BackgroundGrid />
+      <Navbar />
+      <HeroSection />
     </main>
   );
 }
