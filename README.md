@@ -11,7 +11,6 @@ You can click the Preview link to take a look at your changes.
 - 🌱 I’m currently learning HTML5
 - - 💞️ I’m looking to collaborate on building eCommerce website
 --->
-
 ```
 
 ## Portfolio (GitHub Pages)
@@ -29,6 +28,7 @@ This repository uses GitHub Actions to automatically build and deploy the portfo
 ### Setup Instructions
 
 1. **Enable GitHub Pages** in your repository settings:
+
    - Go to **Settings** → **Pages**
    - Under **Source**, select **GitHub Actions**
 

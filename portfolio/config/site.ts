@@ -1,69 +1,47 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + HeroUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Wylliam Cantin Charawi",
+  description:
+    "Computer Vision & Graphics Researcher — Differentiable geometry, 3D reconstruction, physically based rendering.",
   navItems: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
     {
       label: "About",
       href: "/about",
     },
-  ],
-  navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Experiences",
+      href: "/experience",
     },
     {
-      label: "Dashboard",
-      href: "/dashboard",
+      label: "Academia",
+      href: "/academia",
     },
     {
       label: "Projects",
       href: "/projects",
     },
+  ],
+  navMenuItems: [
     {
-      label: "Team",
-      href: "/team",
+      label: "About",
+      href: "/about",
     },
     {
-      label: "Calendar",
-      href: "/calendar",
+      label: "Experiences",
+      href: "/experience",
     },
     {
-      label: "Settings",
-      href: "/settings",
+      label: "Academia",
+      href: "/academia",
     },
     {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
+      label: "Projects",
+      href: "/projects",
     },
   ],
   links: {
-    github: "https://github.com/heroui-inc/heroui",
-    twitter: "https://twitter.com/hero_ui",
-    docs: "https://heroui.com",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    github: "https://github.com/wylliamcc",
+    linkedin: "https://linkedin.com/in/wylliamcc",
   },
 };
