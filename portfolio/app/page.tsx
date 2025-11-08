@@ -1,13 +1,33 @@
-import BackgroundGrid from "@/components/BackgroundGrid";
-import HeroSection from "@/components/HeroSection";
-import Navbar from "@/components/Navbar";
+/**
+ * Single-page portfolio layout
+ * - Sections are composed below; content lives in `data/portfolio.ts`.
+ * - Reorder or remove sections as needed.
+ * - Smooth anchor scrolling is enabled via the `scroll-smooth` class on <main>.
+ */
+import {
+  HeaderNav,
+  HeroSection,
+  AboutSection,
+  ProjectsSection,
+  ExperienceSection,
+  EducationSection,
+} from "@/components/sections";
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#dbe8ff] via-white to-white text-slate-900">
-      <BackgroundGrid />
-      <Navbar />
+    <main className="scroll-smooth bg-white text-slate-900">
+      <HeaderNav />
       <HeroSection />
+      <AboutSection />
+      <ProjectsSection />
+      <ExperienceSection />
+      <EducationSection />
+      <footer className="bg-white py-10 text-center text-sm text-slate-500">
+        <p>
+          Built with Next.js + HeroUI. This page mirrors the DevPortfolio
+          layout. Content is placeholder and can be customized.
+        </p>
+      </footer>
     </main>
   );
 }
