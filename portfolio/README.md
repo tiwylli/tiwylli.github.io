@@ -11,14 +11,8 @@ Single‑page portfolio inspired by https://ryanfitzgerald.github.io/devportfoli
 ## Project Structure
 
 - `app/page.tsx` — Assembles sections (HeaderNav, HeroSection, AboutSection, ProjectsSection, ExperienceSection, EducationSection). Reorder/remove as needed.
-- `components/sections/*` — Section components with inline docs:
-  - `HeaderNav.tsx` — Header menu with anchor links and scroll blur.
-  - `HeroSection.tsx` — Name, intro text, and CTA buttons; radial/grid bg.
-  - `AboutSection.tsx` — Paragraph + `skills` chips.
-  - `ProjectsSection.tsx` — Projects cards from data.
-  - `ExperienceSection.tsx` — Timeline from data.
-  - `EducationSection.tsx` — Degrees/certifications from data.
-  - `components/sections/index.ts` — Barrel exports for cleaner imports.
+- `components/*` — Flat section components with inline docs:
+  - `HeaderNav.tsx`, `HeroSection.tsx`, `AboutSection.tsx`, `ProjectsSection.tsx`, `ExperienceSection.tsx`, `EducationSection.tsx`.
 - `data/portfolio.ts` — Central content (nav items, hero, about, projects, roles, education).
 - `types/portfolio.ts` — Shared types for content.
 

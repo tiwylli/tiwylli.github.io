@@ -16,8 +16,8 @@ export const hero: HeroContent = {
 
 export const about = {
   summary:
-    "I'm a frontend engineer focused on building performant and accessible interfaces. I enjoy turning ideas into real products with thoughtful UX and clean, maintainable code.",
-  skills: ["React", "TypeScript", "Next.js", "HeroUI", "Tailwind CSS", "Node.js"],
+    "TODO",
+  skills: ["TODO"],
 };
 
 export const projects: Project[] = [
