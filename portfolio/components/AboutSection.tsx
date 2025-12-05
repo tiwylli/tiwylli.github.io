@@ -7,7 +7,7 @@ import { about } from "@/data/portfolio";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="scroll-mt-24 bg-white">
+    <section id="about" className="scroll-mt-24">
       <div className="mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
         <h2 className="mb-6 text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
           About
