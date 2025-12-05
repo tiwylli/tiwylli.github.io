@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { Delaunay } from "d3-delaunay";
+import { motion } from "framer-motion";
 
 type Point = [number, number];
 
@@ -9,6 +10,7 @@ interface CvtBackgroundProps {
   iterations?: number; // Lloyd iterations for CVT
   palette?: string[]; // optional color palette
   className?: string; // to control size/position via CSS
+  strokeColor?: string; // optional color for cell borders
 }
 
 interface Cell {
@@ -84,10 +86,12 @@ const CvtBackground: React.FC<CvtBackgroundProps> = ({
   iterations = 3,
   palette = defaultPalette,
   className = "",
+  strokeColor = "none",
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [cells, setCells] = useState<Cell[]>([]);
   const [size, setSize] = useState({ width: 0, height: 0 });
+  const [isVisible, setIsVisible] = useState(false);
 
   // Handle container resize
   useEffect(() => {
@@ -177,6 +181,18 @@ const CvtBackground: React.FC<CvtBackgroundProps> = ({
     setCells(newCells);
   }, [size, numSites, iterations, palette]);
 
+  // Enable a smooth entrance once cells are ready
+  useEffect(() => {
+    if (cells.length === 0) {
+      setIsVisible(false);
+      return;
+    }
+
+    const id = requestAnimationFrame(() => setIsVisible(true));
+
+    return () => cancelAnimationFrame(id);
+  }, [cells.length]);
+
   return (
     <div
       ref={containerRef}
@@ -189,16 +205,29 @@ const CvtBackground: React.FC<CvtBackgroundProps> = ({
       }}
     >
       {size.width > 0 && size.height > 0 && (
-        <svg
+        <motion.svg
           height={size.height}
           preserveAspectRatio="xMidYMid slice"
           viewBox={`0 0 ${size.width} ${size.height}`}
           width={size.width}
+          initial={{ opacity: 0, scale: 1.015 }}
+          animate={
+            isVisible
+              ? { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } }
+              : { opacity: 0, scale: 1.015 }
+          }
         >
           {cells.map((cell, idx) => (
-            <path key={idx} d={cell.path} fill={cell.fill} opacity={0.9} />
+            <path
+              key={idx}
+              d={cell.path}
+              fill={cell.fill}
+              opacity={0.9}
+              stroke={strokeColor}
+              strokeWidth={1}
+            />
           ))}
-        </svg>
+        </motion.svg>
       )}
     </div>
   );

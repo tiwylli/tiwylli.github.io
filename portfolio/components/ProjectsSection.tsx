@@ -13,20 +13,16 @@ import { projects } from "@/data/portfolio";
 export default function ProjectsSection() {
   return (
     <section id="projects" className="scroll-mt-24">
-      <div className="mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
-        <h2 className="mb-8 text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-          Projects
-        </h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="w-full pl-2 pr-8 py-16 text-left">
+        <h2 className="heading-section mb-8">Projects</h2>
+        <div className="grid gap-6 grid-cols-1">
           {projects.map((p) => (
             <Card key={p.title} className="border border-slate-200">
               <CardHeader className="pb-1">
-                <h3 className="text-lg font-semibold text-slate-900">
-                  {p.title}
-                </h3>
+                <h3 className="heading-card">{p.title}</h3>
               </CardHeader>
-              <CardBody className="pt-0 text-slate-600">
-                <p>{p.description}</p>
+              <CardBody className="pt-0">
+                <p className="text-body">{p.description}</p>
                 <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-500">
                   {p.tech.map((t) => (
                     <span

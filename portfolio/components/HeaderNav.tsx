@@ -24,33 +24,24 @@ export default function HeaderNav() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-30 hidden w-full md:block transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-30 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:bg-background/80"
-          : ""
+          ? "bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/75 shadow-sm"
+          : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 md:px-8">
-        <Link
-          as={NextLink}
-          href="#top"
-          className="font-mono text-xs tracking-[0.25em] text-slate-700"
-        >
-          DEVPORTFOLIO
-        </Link>
-        <div className="flex items-center gap-6">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              as={NextLink}
-              href={item.href}
-              aria-label={item.label}
-              className="font-mono text-[0.7rem] uppercase tracking-[0.28em] text-slate-700 hover:text-blue-600"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
+      <div className="mx-auto flex max-w-6xl items-center justify-center gap-6 px-6 py-3">
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            as={NextLink}
+            href={item.href}
+            aria-label={item.label}
+            className="nav-link"
+          >
+            {item.label}
+          </Link>
+        ))}
       </div>
     </nav>
   );

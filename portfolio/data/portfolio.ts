@@ -8,8 +8,8 @@ export const navItems: NavItem[] = [
 ];
 
 export const hero: HeroContent = {
-  name: "Your Name",
-  intro: "I build delightful web experiences. This page mirrors the DevPortfolio layout using Next.js and HeroUI.",
+  name: "Wylliam Cantin Charawi",
+  intro: "3D Reconstruction | Computer Vision | Computer Graphics | Researcher & Software Developer",
   ctaPrimary: { label: "View Work", href: "#projects" },
   ctaSecondary: { label: "Get In Touch", href: "#education" },
 };

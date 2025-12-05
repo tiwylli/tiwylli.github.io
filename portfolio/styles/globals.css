@@ -144,6 +144,10 @@
   --sidebar-border: oklch(0.922 0 0);
 
   --sidebar-ring: oklch(0.708 0 0);
+
+  --font-body: var(--font-sans);
+  --font-display: var(--font-display, var(--font-sans));
+  --font-code: var(--font-mono);
 }
 
 .dark {
@@ -217,5 +221,39 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .heading-hero {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    @apply text-4xl font-extrabold tracking-tight text-slate-900;
+  }
+
+  .heading-section {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    @apply text-2xl font-bold tracking-tight text-slate-900;
+  }
+
+  .heading-card {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    @apply text-lg font-semibold text-slate-900;
+  }
+
+  .text-body {
+    @apply text-base leading-relaxed text-slate-600;
+  }
+
+  .text-muted {
+    @apply text-sm text-slate-500;
+  }
+
+  .nav-link {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    letter-spacing: 0.28em;
+    font-size: 0.95rem;
+    /* Force our colors over the default HeroUI link color (text-primary). */
+    @apply font-medium uppercase transition-colors duration-200 !text-slate-700 hover:!text-green-600;
   }
 }

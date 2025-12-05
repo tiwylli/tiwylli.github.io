@@ -14,9 +14,14 @@ import CvtBackground from "@/components/CvtBackground";
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen scroll-smooth text-slate-900">
+    <main className="relative min-h-screen scroll-smooth text-slate-900 bg-white">
       <div className="z-0" style={{ position: "relative", minHeight: "100vh" }}>
-        <CvtBackground numSites={140} iterations={4} />
+        <CvtBackground
+          numSites={1000}
+          iterations={1000}
+          palette={["#ffffffff"]}
+          strokeColor="#0079120b"
+        />
         <div className="relative z-10">
           <HeaderNav />
           <HeroSection />
