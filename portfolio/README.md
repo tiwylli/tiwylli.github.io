@@ -1,53 +1,48 @@
-# Next.js & HeroUI Template
+# DevPortfolio (Next.js + HeroUI)
 
-This is a template for creating applications using Next.js 14 (app directory) and HeroUI (v2).
+Single‑page portfolio inspired by https://ryanfitzgerald.github.io/devportfolio/, implemented with Next.js (App Router), HeroUI, and Tailwind.
 
-[Try it on CodeSandbox](https://githubbox.com/heroui-inc/heroui/next-app-template)
+## Quick Start
 
-## Technologies Used
+- Install: `npm install`
+- Develop: `npm run dev`
+- Open: http://localhost:3000
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [HeroUI v2](https://heroui.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+## Project Structure
 
-## How to Use
+- `app/page.tsx` — Assembles sections (HeaderNav, HeroSection, AboutSection, ProjectsSection, ExperienceSection, EducationSection). Reorder/remove as needed.
+- `components/*` — Flat section components with inline docs:
+  - `HeaderNav.tsx`, `HeroSection.tsx`, `AboutSection.tsx`, `ProjectsSection.tsx`, `ExperienceSection.tsx`, `EducationSection.tsx`.
+- `data/portfolio.ts` — Central content (nav items, hero, about, projects, roles, education).
+- `types/portfolio.ts` — Shared types for content.
 
-### Use the template with create-next-app
+## How To Edit Content
 
-To create a new project based on this template using `create-next-app`, run the following command:
+- Name & tagline: `data/portfolio.ts` → `hero`
+- Skills and about: `data/portfolio.ts` → `about`
+- Projects: `data/portfolio.ts` → `projects`
+- Experience: `data/portfolio.ts` → `roles`
+- Education: `data/portfolio.ts` → `education`
+- Header items: `data/portfolio.ts` → `navItems` (must match section `id`s)
 
-```bash
-npx create-next-app -e https://github.com/heroui-inc/next-app-template
-```
+## Styling Notes
 
-### Install dependencies
+- Accent color: Tailwind classes use `blue-600`. Change to any Tailwind color (or create CSS vars).
+- Spacing/typography: Tweak Tailwind classes directly in each component. The visual is intentionally minimal.
+- Smooth scroll: Enabled via `scroll-smooth` on `<main>` in `app/page.tsx`.
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+## Tech
 
-```bash
-npm install
-```
+- Next.js 15 (App Router), TypeScript
+- HeroUI v2 components
+- Tailwind CSS v4
 
-### Run the development server
+## Optional Enhancements
 
-```bash
-npm run dev
-```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@heroui/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+- Use `next/font` to load IBM Plex Mono (to match the reference exactly).
+- Add project thumbnails to cards (extend `Project` with `image`).
+- Add mobile nav menu and active section highlighting.
 
 ## License
 
-Licensed under the [MIT license](https://github.com/heroui-inc/next-app-template/blob/main/LICENSE).
+MIT

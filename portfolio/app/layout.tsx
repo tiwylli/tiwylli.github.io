@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+import { fontSans, fontDisplay, fontTektur } from "@/config/fonts";
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -31,12 +31,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
+    <html className="scroll-smooth" suppressHydrationWarning lang="en">
       <head />
       <body
         className={clsx(
           "min-h-screen bg-background font-sans text-foreground antialiased",
           fontSans.variable,
+          fontDisplay.variable,
+          fontTektur.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>

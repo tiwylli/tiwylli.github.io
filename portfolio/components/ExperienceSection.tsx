@@ -1,60 +1,26 @@
-"use client";
+/**
+ * ExperienceSection (timeline)
+ * - Items come from `data/portfolio.ts`.
+ */
+import { roles } from "@/data/portfolio";
 
-import SectionHeader from "@/components/SectionHeader";
-import { experienceRoles } from "@/data/experience";
-
-type ExperienceSectionProps = {
-  limit?: number;
-};
-
-export default function ExperienceSection({ limit }: ExperienceSectionProps) {
-  const roles =
-    typeof limit === "number"
-      ? experienceRoles.slice(0, limit)
-      : experienceRoles;
-
+export default function ExperienceSection() {
   return (
-    <section
-      className="bg-white py-16 dark:bg-neutral-950 dark:text-neutral-100"
-      id="experience"
-    >
-      <div className="mx-auto flex max-w-screen-xl flex-col gap-12 px-4">
-        <SectionHeader
-          align="left"
-          description="Hands-on roles spanning academic research collaborations and industrial computer vision deployments."
-          eyebrow="Experience"
-          title="Applied research and engineering roles"
-        />
-        <div className="relative border-l border-neutral-200 dark:border-neutral-800">
-          <div className="absolute -left-[5px] top-0 bottom-0 hidden w-2 rounded bg-gradient-to-b from-primary-400/60 to-transparent lg:block" />
-          <div className="flex flex-col gap-10">
-            {roles.map((role, index) => (
-              <article key={`${role.title}-${index}`} className="relative pl-8">
-                <span className="absolute left-[-10px] top-1.5 h-2.5 w-2.5 rounded-full border border-white bg-primary-500 dark:border-neutral-900" />
-                <div className="flex flex-col gap-2 rounded-lg border border-neutral-200 bg-neutral-50 p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
-                  <header className="flex flex-col gap-1">
-                    <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
-                      {role.title}
-                    </h3>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                      {role.organization}
-                    </p>
-                    <div className="flex flex-col gap-1 text-sm text-neutral-500 dark:text-neutral-400 sm:flex-row sm:items-center sm:gap-4">
-                      <span>{role.dates}</span>
-                      <span className="hidden sm:inline-block">•</span>
-                      <span>{role.location}</span>
-                    </div>
-                  </header>
-                  <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
-                    {role.highlights.map((highlight) => (
-                      <li key={highlight}>{highlight}</li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
+    <section id="experience" className="scroll-mt-24">
+      <div className="w-full pl-2 pr-8 py-16 text-left">
+        <h2 className="heading-section mb-8">Experience</h2>
+        <ol className="relative border-s-2 border-slate-200">
+          {roles.map((r) => (
+            <li key={r.company} className="ms-6 py-6">
+              <span className="absolute -start-[9px] mt-2 h-4 w-4 rounded-full border-2 border-white bg-blue-600 shadow [box-shadow:0_0_0_2px_rgb(226,232,240)]" />
+              <h3 className="heading-card">{r.title}</h3>
+              <p className="text-muted">
+                {r.company} • {r.period}
+              </p>
+              <p className="text-body mt-2 max-w-3xl">{r.summary}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
