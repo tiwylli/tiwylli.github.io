@@ -39,25 +39,46 @@ export const about = {
 
 export const projects: Project[] = [
   {
-    title: "Portfolio Website",
-    description: "Responsive personal site built with Next.js and HeroUI.",
-    tech: ["Next.js", "HeroUI", "Tailwind"],
-    demo: "#",
-    repo: "#",
+    title: "Voronoify",
+    date: "Oct 2025",
+    description:
+      "High-performance Voronoi image generator across CPU, multi-core CPU, and GPU pipelines to compare performance trade-offs.",
+    tech: ["Python", "CUDA C++", "Rust"],
+    github: "https://github.com/tiwylli/voronoify",
+    details: [
+      "CUDA JFA labeling plus custom reduction kernel to avoid host-device transfers",
+      "Rayon-backed Rust path for GPU-less systems",
+      "Benchmarked CPU, multi-core, and GPU variants to profile trade-offs",
+    ],
+    image: "/vercel.svg",
   },
   {
-    title: "Dashboard",
-    description: "Analytics dashboard with charts, auth, and theming.",
-    tech: ["React", "TypeScript", "API"],
-    demo: "#",
-    repo: "#",
+    title: "Monte Carlo Path Tracer",
+    date: "Sep 2025 - Present",
+    description:
+      "Physically based Monte Carlo path tracer in Rust with MIS, Fresnel-aware BSDFs, and emitter sampling for global illumination.",
+    tech: ["Rust", "Path Tracing", "MIS", "BSDF"],
+    github: "https://github.com/tiwylli/rust-path-tracer",
+    details: [
+      "Implements ray generation, intersections, and Fresnel-aware BRDF/BTDF sampling",
+      "Direct and indirect lighting via modular path tracing with emitter sampling",
+      "Variance reduction through MIS and hierarchical light selection",
+    ],
+    image: "/next.svg",
   },
   {
-    title: "Design System",
-    description: "Reusable components and tokens for a product suite.",
-    tech: ["HeroUI", "Tokens", "Docs"],
-    demo: "#",
-    repo: "#",
+    title: "Numerical Simulation Toolkit",
+    date: "Fall 2022",
+    description:
+      "C++ linear algebra library plus a 2D mass-spring particle simulator with custom solvers and integration schemes.",
+    tech: ["C++", "Linear Algebra", "Simulation"],
+    github: "https://github.com/tiwylli/numerical-sim",
+    details: [
+      "Template-based matrix library with operator overloading and memory management",
+      "Mass-spring engine with implicit Euler integration and stiffness/mass assembly",
+      "Custom solvers including Gauss-Seidel, graph-colored Gauss-Seidel, and Cholesky",
+    ],
+    image: "/next.svg",
   },
 ];
 

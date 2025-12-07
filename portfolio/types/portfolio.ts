@@ -20,6 +20,10 @@ export type Project = {
   title: string;
   description: string;
   tech: string[];
+  date?: string;
+  github?: string;
+  image?: string;
+  details?: string[];
   demo?: string;
   repo?: string;
 };
