@@ -22,17 +22,17 @@ export default function HomePage() {
           palette={["#ffffffff"]}
           strokeColor="#0079120b"
         />
-        <div className="relative z-10">
+        <div className="relative z-10 px-8 sm:px-12 md:px-24">
           <HeaderNav />
           <HeroSection />
           <AboutSection />
           <ProjectsSection />
           <ExperienceSection />
           <EducationSection />
-          <footer className="py-10 text-center text-sm text-slate-500">
+          <footer className="py-5 text-center text-sm text-slate-500">
             <p>
-              Built with Next.js + HeroUI. This page mirrors the DevPortfolio
-              layout. Content is placeholder and can be customized.
+              © 2025 Wylliam Cantin Charawi — Made with ♥ using Next.js +
+              HeroUI & GPU-accelerated chaos.
             </p>
           </footer>
         </div>
