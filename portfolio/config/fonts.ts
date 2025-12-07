@@ -2,6 +2,7 @@ import {
   Fira_Code as FontMono,
   Inter as FontSans,
   Manrope as FontDisplay,
+  Tektur as FontTektur,
 } from "next/font/google";
 
 export const fontSans = FontSans({
@@ -18,4 +19,10 @@ export const fontDisplay = FontDisplay({
   subsets: ["latin"],
   variable: "--font-display",
   weight: ["400", "500", "600", "700", "800"],
+});
+
+export const fontTektur = FontTektur({
+  subsets: ["latin"],
+  variable: "--font-tektur",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
