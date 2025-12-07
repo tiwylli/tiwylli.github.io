@@ -137,7 +137,7 @@ const CvtBackground: React.FC<CvtBackgroundProps> = ({
       const delaunay = Delaunay.from(
         sites,
         (p) => p[0],
-        (p) => p[1]
+        (p) => p[1],
       );
       const voronoi = delaunay.voronoi([0, 0, width, height]);
 
@@ -161,7 +161,7 @@ const CvtBackground: React.FC<CvtBackgroundProps> = ({
     const delaunay = Delaunay.from(
       sites,
       (p) => p[0],
-      (p) => p[1]
+      (p) => p[1],
     );
     const voronoi = delaunay.voronoi([0, 0, width, height]);
 
