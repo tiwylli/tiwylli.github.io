@@ -22,9 +22,9 @@ export const hero: HeroContent = {
 };
 
 export const socialLinks: SocialLink[] = [
-  { label: "Email", href: "#", icon: "mail" },
-  { label: "LinkedIn", href: "#", icon: "linkedin" },
-  { label: "GitHub", href: "#", icon: "github" },
+  { label: "Email", href: "wylliam.cantin.charawi@gmail.com", icon: "mail" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/wylliamcc/", icon: "linkedin" },
+  { label: "GitHub", href: "https://github.com/tiwylli", icon: "github" },
 ];
 
 export const about = {

@@ -30,11 +30,16 @@ export default function HeroSection() {
       <div className="absolute bottom-24 left-0 right-0 flex justify-start gap-3 pl-2">
         {socialLinks.map(({ href, label, icon }) => {
           const Icon = iconComponents[icon];
+          const isEmail = icon === "mail";
+          const safeHref =
+            isEmail && !href.startsWith("mailto:") ? `mailto:${href}` : href;
           return (
             <a
               key={label}
-              href={href}
+              href={safeHref}
               aria-label={label}
+              target={isEmail ? undefined : "_blank"}
+              rel={isEmail ? undefined : "noreferrer noopener"}
               className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-300/80 bg-white/70 text-slate-800 backdrop-blur transition hover:border-green-600 hover:text-green-700 hover:shadow-lg"
             >
               <Icon className="h-6 w-6" strokeWidth={1.75} />
