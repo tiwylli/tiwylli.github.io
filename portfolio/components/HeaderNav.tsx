@@ -6,10 +6,10 @@
  * - Menu items come from data (see `data/portfolio.ts`).
  */
 
-import NextLink from "next/link";
 import { Link } from "@heroui/link";
-
+import NextLink from "next/link";
 import { useEffect, useState } from "react";
+
 import { navItems } from "@/data/portfolio";
 
 export default function HeaderNav() {
@@ -17,8 +17,10 @@ export default function HeaderNav() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 100);
+
     onScroll();
     window.addEventListener("scroll", onScroll);
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -34,10 +36,10 @@ export default function HeaderNav() {
         {navItems.map((item) => (
           <Link
             key={item.href}
-            as={NextLink}
-            href={item.href}
             aria-label={item.label}
+            as={NextLink}
             className="nav-link"
+            href={item.href}
           >
             {item.label}
           </Link>

@@ -31,14 +31,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className="scroll-smooth" suppressHydrationWarning lang="en">
+    <html suppressHydrationWarning className="scroll-smooth" lang="en">
       <head />
       <body
         className={clsx(
           "min-h-screen bg-background font-sans text-foreground antialiased",
           fontSans.variable,
           fontDisplay.variable,
-          fontTektur.variable
+          fontTektur.variable,
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>

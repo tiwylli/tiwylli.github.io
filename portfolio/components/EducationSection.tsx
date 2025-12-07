@@ -6,7 +6,7 @@ import { education } from "@/data/portfolio";
 
 export default function EducationSection() {
   return (
-    <section id="education" className="scroll-mt-24">
+    <section className="scroll-mt-24" id="education">
       <div className="w-full pl-2 pr-8 py-16 text-left">
         <h2 className="heading-section mb-8">Education</h2>
         <ul className="space-y-6">
@@ -19,9 +19,7 @@ export default function EducationSection() {
               <p className="text-muted">
                 {e.school} • {e.period}
               </p>
-              {e.summary && (
-                <p className="text-body mt-2">{e.summary}</p>
-              )}
+              {e.summary && <p className="text-body mt-2">{e.summary}</p>}
             </li>
           ))}
         </ul>

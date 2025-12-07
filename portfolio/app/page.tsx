@@ -17,8 +17,8 @@ export default function HomePage() {
     <main className="relative min-h-screen scroll-smooth text-slate-900 bg-white">
       <div className="z-0" style={{ position: "relative", minHeight: "100vh" }}>
         <CvtBackground
-          numSites={1000}
           iterations={1000}
+          numSites={1000}
           palette={["#ffffffff"]}
           strokeColor="#0079120b"
         />

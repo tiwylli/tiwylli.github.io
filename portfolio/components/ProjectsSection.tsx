@@ -6,13 +6,14 @@
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
+
 import { projects } from "@/data/portfolio";
 
 // Data imported; no inline array here.
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="scroll-mt-24">
+    <section className="scroll-mt-24" id="projects">
       <div className="w-full pl-2 pr-8 py-16 text-left">
         <h2 className="heading-section mb-8">Projects</h2>
         <div className="grid gap-6 grid-cols-1">

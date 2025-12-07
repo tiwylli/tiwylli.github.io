@@ -16,20 +16,24 @@ export const navItems: NavItem[] = [
 
 export const hero: HeroContent = {
   name: "Wylliam Cantin Charawi",
-  intro: "3D Reconstruction | Computer Vision | Computer Graphics | Researcher & Software Developer",
+  intro:
+    "3D Reconstruction | Computer Vision | Computer Graphics | Researcher & Software Developer",
   ctaPrimary: { label: "View Work", href: "#projects" },
   ctaSecondary: { label: "Get In Touch", href: "#education" },
 };
 
 export const socialLinks: SocialLink[] = [
   { label: "Email", href: "wylliam.cantin.charawi@gmail.com", icon: "mail" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/wylliamcc/", icon: "linkedin" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/wylliamcc/",
+    icon: "linkedin",
+  },
   { label: "GitHub", href: "https://github.com/tiwylli", icon: "github" },
 ];
 
 export const about = {
-  summary:
-    "TODO",
+  summary: "TODO",
   skills: ["TODO"],
 };
 

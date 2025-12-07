@@ -6,7 +6,7 @@ import { roles } from "@/data/portfolio";
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="scroll-mt-24">
+    <section className="scroll-mt-24" id="experience">
       <div className="w-full pl-2 pr-8 py-16 text-left">
         <h2 className="heading-section mb-8">Experience</h2>
         <ol className="relative border-s-2 border-slate-200">

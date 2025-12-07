@@ -185,6 +185,7 @@ const CvtBackground: React.FC<CvtBackgroundProps> = ({
   useEffect(() => {
     if (cells.length === 0) {
       setIsVisible(false);
+
       return;
     }
 
@@ -206,16 +207,20 @@ const CvtBackground: React.FC<CvtBackgroundProps> = ({
     >
       {size.width > 0 && size.height > 0 && (
         <motion.svg
+          animate={
+            isVisible
+              ? {
+                  opacity: 1,
+                  scale: 1,
+                  transition: { duration: 0.8, ease: "easeOut" },
+                }
+              : { opacity: 0, scale: 1.015 }
+          }
           height={size.height}
+          initial={{ opacity: 0, scale: 1.015 }}
           preserveAspectRatio="xMidYMid slice"
           viewBox={`0 0 ${size.width} ${size.height}`}
           width={size.width}
-          initial={{ opacity: 0, scale: 1.015 }}
-          animate={
-            isVisible
-              ? { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } }
-              : { opacity: 0, scale: 1.015 }
-          }
         >
           {cells.map((cell, idx) => (
             <path
