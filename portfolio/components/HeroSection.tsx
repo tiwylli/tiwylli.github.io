@@ -1,13 +1,13 @@
 "use client";
 
 import { Github, Linkedin, Mail } from "lucide-react";
-import { hero } from "@/data/portfolio";
+import { hero, socialLinks } from "@/data/portfolio";
 
-const socialLinks = [
-  { label: "Email", href: "#", Icon: Mail },
-  { label: "LinkedIn", href: "#", Icon: Linkedin },
-  { label: "GitHub", href: "#", Icon: Github },
-];
+const iconComponents = {
+  mail: Mail,
+  linkedin: Linkedin,
+  github: Github,
+} as const;
 
 export default function HeroSection() {
   return (
@@ -28,16 +28,19 @@ export default function HeroSection() {
 
       {/* Bottom row: social links pinned near bottom of screen */}
       <div className="absolute bottom-24 left-0 right-0 flex justify-start gap-3 pl-2">
-        {socialLinks.map(({ href, label, Icon }) => (
-          <a
-            key={label}
-            href={href}
-            aria-label={label}
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-300/80 bg-white/70 text-slate-800 backdrop-blur transition hover:border-green-600 hover:text-green-700 hover:shadow-lg"
-          >
-            <Icon className="h-6 w-6" strokeWidth={1.75} />
-          </a>
-        ))}
+        {socialLinks.map(({ href, label, icon }) => {
+          const Icon = iconComponents[icon];
+          return (
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-300/80 bg-white/70 text-slate-800 backdrop-blur transition hover:border-green-600 hover:text-green-700 hover:shadow-lg"
+            >
+              <Icon className="h-6 w-6" strokeWidth={1.75} />
+            </a>
+          );
+        })}
       </div>
     </header>
   );

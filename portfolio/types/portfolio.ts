@@ -10,6 +10,12 @@ export type HeroContent = {
   ctaSecondary: { label: string; href: string };
 };
 
+export type SocialLink = {
+  label: string;
+  href: string;
+  icon: "mail" | "linkedin" | "github";
+};
+
 export type Project = {
   title: string;
   description: string;
@@ -31,4 +37,3 @@ export type EducationItem = {
   period: string;
   summary?: string;
 };
-

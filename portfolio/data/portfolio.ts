@@ -1,4 +1,11 @@
-import type { EducationItem, HeroContent, NavItem, Project, Role } from "@/types/portfolio";
+import type {
+  EducationItem,
+  HeroContent,
+  NavItem,
+  Project,
+  Role,
+  SocialLink,
+} from "@/types/portfolio";
 
 export const navItems: NavItem[] = [
   { label: "About", href: "#about" },
@@ -13,6 +20,12 @@ export const hero: HeroContent = {
   ctaPrimary: { label: "View Work", href: "#projects" },
   ctaSecondary: { label: "Get In Touch", href: "#education" },
 };
+
+export const socialLinks: SocialLink[] = [
+  { label: "Email", href: "#", icon: "mail" },
+  { label: "LinkedIn", href: "#", icon: "linkedin" },
+  { label: "GitHub", href: "#", icon: "github" },
+];
 
 export const about = {
   summary:
@@ -69,4 +82,3 @@ export const education: EducationItem[] = [
     summary: "Focused on software engineering, HCI, and web technologies.",
   },
 ];
-
