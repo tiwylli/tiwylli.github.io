@@ -25,9 +25,9 @@ export default function HomePage() {
         <div className="relative z-10 px-8 sm:px-12 md:px-24">
           <HeaderNav />
           <HeroSection />
-          <AboutSection />
-          <ProjectsSection />
+          {/* <AboutSection /> */}
           <ExperienceSection />
+          <ProjectsSection />
           <EducationSection />
           <footer className="py-5 text-center text-sm text-slate-500">
             <p>

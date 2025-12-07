@@ -8,9 +8,9 @@ import type {
 } from "@/types/portfolio";
 
 export const navItems: NavItem[] = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
+  //{ label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
   { label: "Education", href: "#education" },
 ];
 
