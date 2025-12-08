@@ -10,9 +10,9 @@ import type {
 export const navItems: NavItem[] = [
   //{ label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" },
   { label: "Research", href: "#research" },
+  { label: "Education", href: "#education" },
+  { label: "Projects", href: "#projects" },
   { label: "Leadership", href: "#leadership" },
 ];
 
@@ -76,6 +76,35 @@ export const projects: Project[] = [
       "Template-based matrix library with operator overloading and memory management",
       "Mass-spring engine with implicit Euler integration and stiffness/mass assembly",
       "Custom solvers including Gauss-Seidel, graph-colored Gauss-Seidel, and Cholesky",
+    ],
+    image: "/next.svg",
+  },
+];
+
+export const research: Project[] = [
+  {
+    title: "Neural Implicit Reconstruction",
+    date: "2024 — Present",
+    description:
+      "Exploring neural implicit surfaces (SDFs/NeRFs) for real-time reconstruction of small-scale objects under sparse views.",
+    tech: ["PyTorch", "CUDA", "NeRF", "SDF"],
+    github: "https://github.com/tiwylli/nerf-implicit",
+    details: [
+      "Implemented mixed-precision training with occupancy grids for faster convergence on constrained GPUs.",
+      "Benchmarked multi-resolution hash encodings against sinusoidal positional encodings for view consistency.",
+    ],
+    image: "/next.svg",
+  },
+  {
+    title: "Robust Pose Estimation",
+    date: "2023",
+    description:
+      "Evaluating robust loss functions and RANSAC variants for camera pose estimation on noisy keypoints.",
+    tech: ["Python", "OpenCV", "Ceres"],
+    github: "https://github.com/tiwylli/robust-pose",
+    details: [
+      "Compared PnP solvers (EPnP, RPnP) under increasing outlier ratios with synthetic and real benchmarks.",
+      "Introduced Tukey and Geman-McClure losses into bundle adjustment to improve stability in cluttered scenes.",
     ],
     image: "/next.svg",
   },
