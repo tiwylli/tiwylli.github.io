@@ -6,8 +6,6 @@ export type NavItem = {
 export type HeroContent = {
   name: string;
   intro: string;
-  ctaPrimary: { label: string; href: string };
-  ctaSecondary: { label: string; href: string };
 };
 
 export type SocialLink = {
@@ -20,6 +18,10 @@ export type Project = {
   title: string;
   description: string;
   tech: string[];
+  date?: string;
+  github?: string;
+  image?: string;
+  details?: string[];
   demo?: string;
   repo?: string;
 };
