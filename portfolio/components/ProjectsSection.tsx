@@ -6,10 +6,9 @@
  * - Click the card to open GitHub; arrow toggles extra details.
  */
 import { useState } from "react";
-import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
+import { Card, CardBody } from "@heroui/card";
 import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
-import { Image } from "@heroui/image";
 import { ChevronDown } from "lucide-react";
 
 import { projects } from "@/data/portfolio";
@@ -33,99 +32,96 @@ export default function ProjectsSection() {
         <div className="grid gap-6">
           {projects.map((p) => {
             const expanded = open === p.title;
+            const showImage = Boolean(p.image);
             const targetUrl = p.github ?? p.repo ?? p.demo;
             const isClickable = Boolean(targetUrl);
-            const openTarget = () => {
-              if (!targetUrl) return;
-              window.open(targetUrl, "_blank", "noreferrer");
-            };
+            const clickableProps = isClickable
+              ? ({
+                  as: "a",
+                  href: targetUrl,
+                  target: "_blank",
+                  rel: "noreferrer noopener",
+                } as const)
+              : ({ as: "div" } as const);
 
             return (
               <Card
-                as="article"
                 key={p.title}
-                className={`border border-green-200 bg-emerald-50/60 min-h-[360px] shadow-none transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg ${
+                className={`border border-green-200 bg-emerald-50/60 shadow-none transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg ${
                   isClickable ? "cursor-pointer" : ""
                 }`}
-                role={isClickable ? "button" : undefined}
-                tabIndex={isClickable ? 0 : undefined}
-                onClick={openTarget}
-                onKeyDown={(e) => {
-                  if (!isClickable) return;
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    openTarget();
-                  }
-                }}
+                {...clickableProps}
               >
-                <CardHeader className="flex items-center justify-between pb-2">
-                  <h3 className="font-tektur heading-card text-slate-900">
-                    {p.title}
-                  </h3>
-                  <Button
-                    className="border border-green-200 bg-white/80 text-green-800"
-                    isIconOnly
-                    size="sm"
-                    variant="flat"
-                    aria-label={
-                      expanded ? "Collapse details" : "Expand details"
-                    }
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setOpen(expanded ? null : p.title);
-                    }}
+                <CardBody className="pt-4">
+                  <div
+                    className={`grid items-start lg:items-stretch gap-4 ${
+                      showImage ? "lg:grid-cols-[1.05fr_1fr]" : ""
+                    }`}
                   >
-                    <ChevronDown
-                      className={`h-4 w-4 duration-001 ${
-                        expanded ? "rotate-180" : ""
-                      }`}
-                    />
-                  </Button>
-                </CardHeader>
-
-                <CardBody className="pt-0">
-                  <div className="grid items-start gap-4 lg:grid-cols-2">
-                    <div className="space-y-3 text-slate-700">
-                      <p className="text-body">{p.description}</p>
-                      {expanded && p.details?.length ? (
-                        <ul className="list-disc space-y-2 pl-5 text-sm">
-                          {p.details.map((d) => (
-                            <li key={d}>{d}</li>
-                          ))}
-                        </ul>
-                      ) : null}
-                    </div>
-                    <div className="relative w-full overflow-hidden rounded-lg">
-                      {p.image ? (
-                        <div
-                          className={`relative ${
-                            expanded ? "aspect-[16/9]" : "aspect-[16/4.5]"
-                          }`}
-                        >
-                          <Image
-                            alt={`${p.title} preview`}
-                            className="h-full w-full object-cover"
-                            src={p.image}
-                          />
+                    <div className="flex flex-col gap-4 text-slate-700">
+                      <h3 className="font-tektur heading-card text-slate-900">
+                        {p.title}
+                      </h3>
+                      <div className="space-y-3">
+                        <div className="flex items-start justify-between gap-3">
+                          <p className="text-body flex-1">{p.description}</p>
+                          {p.details?.length ? (
+                            <Button
+                              className="border border-green-200 bg-white/80 text-green-800"
+                              isIconOnly
+                              size="sm"
+                              variant="flat"
+                              aria-label={
+                                expanded ? "Collapse details" : "Expand details"
+                              }
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setOpen(expanded ? null : p.title);
+                              }}
+                            >
+                              <ChevronDown
+                                className={`h-4 w-4 ${
+                                  expanded ? "rotate-180" : ""
+                                }`}
+                              />
+                            </Button>
+                          ) : null}
                         </div>
-                      ) : null}
+                        {expanded && p.details?.length ? (
+                          <ul className="list-disc space-y-2 pl-5 text-sm">
+                            {p.details.map((d) => (
+                              <li key={d}>{d}</li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {p.tech.map((t) => (
+                          <Chip
+                            key={t}
+                            className="rounded-md bg-black text-white"
+                            size="md"
+                            variant="flat"
+                          >
+                            {t}
+                          </Chip>
+                        ))}
+                      </div>
                     </div>
+                    {showImage ? (
+                      <div className="relative w-full overflow-hidden rounded-lg border border-green-100 bg-white/60 aspect-[16/9] lg:aspect-auto lg:h-full lg:min-h-0 lg:self-stretch">
+                        <img
+                          alt={`${p.title} preview`}
+                          className="absolute inset-0 h-full w-full object-cover"
+                          decoding="async"
+                          loading="lazy"
+                          src={p.image}
+                        />
+                      </div>
+                    ) : null}
                   </div>
                 </CardBody>
-
-                <CardFooter className="flex flex-wrap gap-2">
-                  {p.tech.map((t) => (
-                    <Chip
-                      key={t}
-                      className="rounded-md bg-black text-white"
-                      size="md"
-                      variant="flat"
-                    >
-                      {t}
-                    </Chip>
-                  ))}
-                </CardFooter>
               </Card>
             );
           })}

@@ -39,17 +39,17 @@ export const about = {
 export const projects: Project[] = [
   {
     title: "Voronoify",
-    date: "Oct 2025",
+    date: "",
     description:
       "High-performance Voronoi image generator across CPU, multi-core CPU, and GPU pipelines to compare performance trade-offs.",
-    tech: ["Python", "CUDA C++", "Rust"],
+    tech: ["Python", "Rust", "CUDA", "C++"],
     github: "https://github.com/tiwylli/voronoify",
     details: [
-      "CUDA JFA labeling plus custom reduction kernel to avoid host-device transfers",
-      "Rayon-backed Rust path for GPU-less systems",
-      "Benchmarked CPU, multi-core, and GPU variants to profile trade-offs",
+      "Engineered multiple high-performance implementations of a Voronoi image generator, targeting CPU, multi-core CPU, and GPU architectures to analyze performance trade-offs.",
+      "Developed a native CUDA C++ solution using the Jump Flooding Algorithm (JFA) for labeling and a custom parallel reduction kernel for color averaging, eliminating host-device transfer bottlenecks.",
+      "Built a memory-safe, parallel version in Rust with Rayon, providing an alternative for systems without a GPU.",
     ],
-    image: "/vercel.svg",
+    image: "/voronoify.png",
   },
   {
     title: "Monte Carlo Path Tracer",
