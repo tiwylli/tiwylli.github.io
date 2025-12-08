@@ -12,14 +12,13 @@ export const navItems: NavItem[] = [
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Education", href: "#education" },
+  { label: "Research", href: "#research" },
+  { label: "Leadership", href: "#leadership" },
 ];
 
 export const hero: HeroContent = {
   name: "Wylliam Cantin Charawi",
-  intro:
-    "3D Reconstruction | Computer Vision | Computer Graphics | Researcher & Software Developer",
-  ctaPrimary: { label: "View Work", href: "#projects" },
-  ctaSecondary: { label: "Get In Touch", href: "#education" },
+  intro: "Computer Vision & Graphics Research Engineer",
 };
 
 export const socialLinks: SocialLink[] = [

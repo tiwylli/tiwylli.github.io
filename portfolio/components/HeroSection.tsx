@@ -23,7 +23,7 @@ export default function HeroSection() {
           I&apos;m <span className="text-green-700">{hero.name}</span>
         </h1>
         <p className="text-[24px] leading-[1.35] text-slate-700">
-          Computer Vision & Graphics Research Engineer
+          {hero.intro}
         </p>
       </div>
 

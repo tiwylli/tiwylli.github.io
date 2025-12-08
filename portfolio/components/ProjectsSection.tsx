@@ -3,16 +3,20 @@
 /**
  * ProjectsSection
  * - Items come from `data/portfolio.ts`.
- * - Click the card to open GitHub.
+ * - Click the card to open GitHub; arrow toggles extra details.
  */
+import { useState } from "react";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
 import { Image } from "@heroui/image";
+import { ChevronDown } from "lucide-react";
 
 import { projects } from "@/data/portfolio";
 
 export default function ProjectsSection() {
+  const [open, setOpen] = useState<string | null>(null);
+
   return (
     <section className="scroll-mt-24" id="projects">
       <div className="w-full pl-2 pr-8 py-16 text-left">
@@ -28,6 +32,7 @@ export default function ProjectsSection() {
         </h2>
         <div className="grid gap-6">
           {projects.map((p) => {
+            const expanded = open === p.title;
             const targetUrl = p.github ?? p.repo ?? p.demo;
 
             return (
@@ -44,13 +49,30 @@ export default function ProjectsSection() {
                   <h3 className="font-tektur heading-card text-slate-900">
                     {p.title}
                   </h3>
+                  <Button
+                    className="border border-green-200 bg-white/80 text-green-800"
+                    isIconOnly
+                    size="sm"
+                    variant="flat"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setOpen(expanded ? null : p.title);
+                    }}
+                  >
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform ${
+                        expanded ? "rotate-180" : ""
+                      }`}
+                    />
+                  </Button>
                 </CardHeader>
 
                 <CardBody className="pt-0">
                   <div className="grid items-start gap-4 lg:grid-cols-2">
                     <div className="space-y-3 text-slate-700">
                       <p className="text-body">{p.description}</p>
-                      {p.details?.length ? (
+                      {expanded && p.details?.length ? (
                         <ul className="list-disc space-y-2 pl-5 text-sm">
                           {p.details.map((d) => (
                             <li key={d}>{d}</li>
@@ -60,7 +82,11 @@ export default function ProjectsSection() {
                     </div>
                     <div className="relative w-full overflow-hidden rounded-lg">
                       {p.image ? (
-                        <div className="relative aspect-[16/9]">
+                        <div
+                          className={`relative ${
+                            expanded ? "aspect-[16/9]" : "aspect-[16/4.5]"
+                          }`}
+                        >
                           <Image
                             alt={`${p.title} preview`}
                             className="h-full w-full object-cover"
@@ -77,7 +103,7 @@ export default function ProjectsSection() {
                     <Chip
                       key={t}
                       className="rounded-md bg-black text-white"
-                      size="sm"
+                      size="md"
                       variant="flat"
                     >
                       {t}
