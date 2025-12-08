@@ -34,15 +34,28 @@ export default function ProjectsSection() {
           {projects.map((p) => {
             const expanded = open === p.title;
             const targetUrl = p.github ?? p.repo ?? p.demo;
+            const isClickable = Boolean(targetUrl);
+            const openTarget = () => {
+              if (!targetUrl) return;
+              window.open(targetUrl, "_blank", "noreferrer");
+            };
 
             return (
               <Card
+                as="article"
                 key={p.title}
-                className="border border-green-200 bg-emerald-50/60 min-h-[360px] shadow-none transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg"
-                isPressable={Boolean(targetUrl)}
-                onClick={() => {
-                  if (!targetUrl) return;
-                  window.open(targetUrl, "_blank", "noreferrer");
+                className={`border border-green-200 bg-emerald-50/60 min-h-[360px] shadow-none transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg ${
+                  isClickable ? "cursor-pointer" : ""
+                }`}
+                role={isClickable ? "button" : undefined}
+                tabIndex={isClickable ? 0 : undefined}
+                onClick={openTarget}
+                onKeyDown={(e) => {
+                  if (!isClickable) return;
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    openTarget();
+                  }
                 }}
               >
                 <CardHeader className="flex items-center justify-between pb-2">
@@ -54,6 +67,9 @@ export default function ProjectsSection() {
                     isIconOnly
                     size="sm"
                     variant="flat"
+                    aria-label={
+                      expanded ? "Collapse details" : "Expand details"
+                    }
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -61,7 +77,7 @@ export default function ProjectsSection() {
                     }}
                   >
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform ${
+                      className={`h-4 w-4 duration-001 ${
                         expanded ? "rotate-180" : ""
                       }`}
                     />
