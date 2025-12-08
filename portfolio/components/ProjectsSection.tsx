@@ -10,8 +10,13 @@ import { Card, CardBody } from "@heroui/card";
 import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
 import { ChevronDown } from "lucide-react";
-
 import { projects } from "@/data/portfolio";
+
+const iconPaths = {
+  mail: "/icons/mail.svg",
+  linkedin: "/icons/linkedin.svg",
+  github: "/icons/github.svg",
+} as const;
 
 export default function ProjectsSection() {
   const [open, setOpen] = useState<Record<string, boolean>>({});

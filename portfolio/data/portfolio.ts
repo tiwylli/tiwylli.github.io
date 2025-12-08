@@ -98,6 +98,23 @@ export const roles: Role[] = [
   },
 ];
 
+export const leadership: Role[] = [
+  {
+    company: "AI Research Society",
+    title: "President",
+    period: "2024 — Present",
+    summary:
+      "Led a cross-disciplinary team to host technical workshops, mentorship programs, and hackathons focused on AI safety and computer vision.",
+  },
+  {
+    company: "Open Source Guild",
+    title: "Organizer",
+    period: "2022 — 2024",
+    summary:
+      "Coordinated contributor onboarding and release planning, growing active membership and maintaining healthy project velocity.",
+  },
+];
+
 export const education: EducationItem[] = [
   {
     school: "University Name",

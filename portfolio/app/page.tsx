@@ -10,6 +10,7 @@ import AboutSection from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import EducationSection from "@/components/EducationSection";
+import LeadershipSection from "@/components/LeadershipSection";
 import CvtBackground from "@/components/CvtBackground";
 
 export default function HomePage() {
@@ -29,6 +30,7 @@ export default function HomePage() {
           <ExperienceSection />
           <ProjectsSection />
           <EducationSection />
+          <LeadershipSection />
           <footer className="py-5 text-center text-sm text-slate-500">
             <p>
               © 2025 Wylliam Cantin Charawi — Made with ♥ using Next.js +
