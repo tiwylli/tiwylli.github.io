@@ -14,7 +14,7 @@ import { ChevronDown } from "lucide-react";
 import { projects } from "@/data/portfolio";
 
 export default function ProjectsSection() {
-  const [open, setOpen] = useState<string | null>(null);
+  const [open, setOpen] = useState<Record<string, boolean>>({});
 
   return (
     <section className="scroll-mt-24" id="projects">
@@ -31,8 +31,9 @@ export default function ProjectsSection() {
         </h2>
         <div className="grid gap-6">
           {projects.map((p) => {
-            const expanded = open === p.title;
+            const expanded = Boolean(open[p.title]);
             const showImage = Boolean(p.image);
+            const showExpandedMedia = expanded && showImage;
             const targetUrl = p.github ?? p.repo ?? p.demo;
             const isClickable = Boolean(targetUrl);
             const clickableProps = isClickable
@@ -77,7 +78,10 @@ export default function ProjectsSection() {
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                setOpen(expanded ? null : p.title);
+                                setOpen((prev) => ({
+                                  ...prev,
+                                  [p.title]: !prev[p.title],
+                                }));
                               }}
                             >
                               <ChevronDown
@@ -110,10 +114,20 @@ export default function ProjectsSection() {
                       </div>
                     </div>
                     {showImage ? (
-                      <div className="relative w-full overflow-hidden rounded-lg border border-green-100 bg-white/60 aspect-[16/9] lg:aspect-auto lg:h-full lg:min-h-0 lg:self-stretch">
+                      <div
+                        className={`relative w-full overflow-hidden rounded-lg border border-green-100 bg-white/60 ${
+                          showExpandedMedia
+                            ? "flex items-center justify-center self-stretch"
+                            : "aspect-[16/9] max-h-36"
+                        }`}
+                      >
                         <img
                           alt={`${p.title} preview`}
-                          className="absolute inset-0 h-full w-full object-cover"
+                          className={`block w-full ${
+                            showExpandedMedia
+                              ? "h-auto object-contain"
+                              : "h-full object-cover"
+                          }`}
                           decoding="async"
                           loading="lazy"
                           src={p.image}
