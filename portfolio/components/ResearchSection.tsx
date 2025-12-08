@@ -1,41 +1,36 @@
 "use client";
 
 /**
- * ProjectsSection
+ * ResearchSection
  * - Items come from `data/portfolio.ts`.
- * - Click the card to open GitHub; arrow toggles extra details.
+ * - Same interaction as ProjectsSection.
  */
 import { useState } from "react";
 import { Card, CardBody } from "@heroui/card";
 import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
 import { ChevronDown } from "lucide-react";
-import { projects } from "@/data/portfolio";
 
-const iconPaths = {
-  mail: "/icons/mail.svg",
-  linkedin: "/icons/linkedin.svg",
-  github: "/icons/github.svg",
-} as const;
+import { research } from "@/data/portfolio";
 
-export default function ProjectsSection() {
+export default function ResearchSection() {
   const [open, setOpen] = useState<Record<string, boolean>>({});
 
   return (
-    <section className="scroll-mt-24" id="projects">
+    <section className="scroll-mt-24" id="research">
       <div className="w-full pl-2 pr-8 py-16 text-left">
         <h2 className="heading-section mb-8 font-tektur text-4xl sm:text-5xl text-slate-900">
           <span className="relative inline-block">
-            Pr
+            Re
             <span
               aria-hidden
               className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-green-500"
             />
           </span>
-          ojects
+          search
         </h2>
         <div className="grid gap-6">
-          {projects.map((p) => {
+          {research.map((p) => {
             const expanded = Boolean(open[p.title]);
             const showImage = Boolean(p.image);
             const showExpandedMedia = expanded && showImage;

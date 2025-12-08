@@ -1,13 +1,11 @@
 "use client";
 
-import { Github, Linkedin, Mail } from "lucide-react";
-
 import { hero, socialLinks } from "@/data/portfolio";
 
-const iconComponents = {
-  mail: Mail,
-  linkedin: Linkedin,
-  github: Github,
+const iconPaths = {
+  mail: "/icons/mail.svg",
+  linkedin: "/icons/linkedin.svg",
+  github: "/icons/github.svg",
 } as const;
 
 export default function HeroSection() {
@@ -30,7 +28,7 @@ export default function HeroSection() {
       {/* Bottom row: social links pinned near bottom of screen */}
       <div className="absolute bottom-24 left-0 right-0 flex justify-start gap-3 pl-2">
         {socialLinks.map(({ href, label, icon }) => {
-          const Icon = iconComponents[icon];
+          const iconPath = iconPaths[icon];
           const isEmail = icon === "mail";
           const safeHref =
             isEmail && !href.startsWith("mailto:") ? `mailto:${href}` : href;
@@ -44,7 +42,20 @@ export default function HeroSection() {
               rel={isEmail ? undefined : "noreferrer noopener"}
               target={isEmail ? undefined : "_blank"}
             >
-              <Icon className="h-6 w-6" strokeWidth={1.75} />
+              <span
+                aria-hidden
+                className="block h-6 w-6 bg-current"
+                style={{
+                  maskImage: `url(${iconPath})`,
+                  WebkitMaskImage: `url(${iconPath})`,
+                  maskRepeat: "no-repeat",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskPosition: "center",
+                  WebkitMaskPosition: "center",
+                  maskSize: "contain",
+                  WebkitMaskSize: "contain",
+                }}
+              />
             </a>
           );
         })}

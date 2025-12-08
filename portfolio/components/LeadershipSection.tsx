@@ -1,25 +1,25 @@
 /**
- * ExperienceSection (timeline)
+ * LeadershipSection (timeline)
  * - Items come from `data/portfolio.ts`.
  */
-import { roles } from "@/data/portfolio";
+import { leadership } from "@/data/portfolio";
 
-export default function ExperienceSection() {
+export default function LeadershipSection() {
   return (
-    <section className="scroll-mt-24" id="experience">
+    <section className="scroll-mt-24" id="leadership">
       <div className="w-full pl-2 pr-8 py-16 text-left">
         <h2 className="heading-section mb-8 font-tektur text-4xl sm:text-5xl text-slate-900">
           <span className="relative inline-block">
-            Ex
+            Le
             <span
               aria-hidden
               className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-green-500"
             />
           </span>
-          perience
+          adership
         </h2>
         <ol className="relative z-0 space-y-14 before:absolute before:top-0 before:bottom-0 before:left-1/2 before:w-[3px] before:-translate-x-1/2 before:rounded-full before:bg-emerald-200 before:content-[''] before:-z-10">
-          {roles.map((r) => {
+          {leadership.map((r) => {
             const bullets = r.bullets?.length ? r.bullets : [r.summary];
 
             return (

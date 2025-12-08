@@ -31,6 +31,7 @@ export type Role = {
   title: string;
   period: string;
   summary: string;
+  bullets?: string[];
 };
 
 export type EducationItem = {
