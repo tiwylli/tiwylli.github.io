@@ -12,28 +12,15 @@ import { Chip } from "@heroui/chip";
 import { ChevronDown } from "lucide-react";
 import { projects } from "@/data/portfolio";
 
-const iconPaths = {
-  mail: "/icons/mail.svg",
-  linkedin: "/icons/linkedin.svg",
-  github: "/icons/github.svg",
-} as const;
+import { SectionHeading, sectionWrapper } from "@/components/SectionHeading";
 
 export default function ProjectsSection() {
   const [open, setOpen] = useState<Record<string, boolean>>({});
 
   return (
     <section className="scroll-mt-24" id="projects">
-      <div className="w-full pl-2 pr-8 py-16 text-left">
-        <h2 className="heading-section mb-8 font-tektur text-4xl sm:text-5xl text-slate-900">
-          <span className="relative inline-block">
-            Pr
-            <span
-              aria-hidden
-              className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-green-500"
-            />
-          </span>
-          ojects
-        </h2>
+      <div className={`${sectionWrapper} text-left`}>
+        <SectionHeading title="Projects" />
         <div className="grid gap-6">
           {projects.map((p) => {
             const expanded = Boolean(open[p.title]);
@@ -53,27 +40,27 @@ export default function ProjectsSection() {
             return (
               <Card
                 key={p.title}
-                className={`border border-green-200 bg-emerald-50 shadow-none transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg ${
-                  isClickable ? "cursor-pointer" : ""
-                }`}
+                className={`rounded-xl border border-emerald-200 bg-emerald-50/90 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 dark:border-emerald-800/70 dark:bg-slate-900/70 ${isClickable ? "cursor-pointer" : ""}`}
                 {...clickableProps}
               >
-                <CardBody className="pt-4">
+                <CardBody className="flex flex-col gap-4 pt-4">
                   <div
-                    className={`grid items-start lg:items-stretch gap-4 ${
+                    className={`grid items-start gap-4 lg:items-stretch ${
                       showImage ? "lg:grid-cols-[1.05fr_1fr]" : ""
                     }`}
                   >
-                    <div className="flex flex-col gap-4 text-slate-700">
-                      <h3 className="font-tektur heading-card text-slate-900">
+                    <div className="flex flex-col gap-4 text-slate-700 dark:text-slate-200">
+                      <h3 className="heading-card text-slate-900 dark:text-slate-100">
                         {p.title}
                       </h3>
                       <div className="space-y-3">
                         <div className="flex items-start justify-between gap-3">
-                          <p className="text-body flex-1">{p.description}</p>
+                          <p className="text-body flex-1 dark:text-slate-200">
+                            {p.description}
+                          </p>
                           {p.details?.length ? (
                             <Button
-                              className="border border-green-200 bg-white/80 text-green-800"
+                              className="border border-green-200 bg-white/80 text-green-800 dark:border-emerald-800/60 dark:bg-slate-800/70 dark:text-emerald-100"
                               isIconOnly
                               size="sm"
                               variant="flat"
@@ -120,7 +107,7 @@ export default function ProjectsSection() {
                     </div>
                     {showImage ? (
                       <div
-                        className={`relative w-full overflow-hidden rounded-lg border border-green-100 bg-white/60 ${
+                        className={`relative w-full overflow-hidden rounded-lg border border-green-100 bg-white/60 dark:border-emerald-800/60 dark:bg-slate-800/60 ${
                           showExpandedMedia
                             ? "flex items-center justify-center self-stretch"
                             : "aspect-[16/9] max-h-36"
