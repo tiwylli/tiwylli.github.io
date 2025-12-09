@@ -109,17 +109,13 @@ export default function ProjectsSection() {
                       <div
                         className={`relative w-full overflow-hidden rounded-lg border border-green-100 bg-white/60 dark:border-emerald-800/60 dark:bg-slate-800/60 ${
                           showExpandedMedia
-                            ? "flex items-center justify-center self-stretch"
+                            ? "h-full min-h-[220px] self-stretch"
                             : "aspect-[16/9] max-h-36"
                         }`}
                       >
                         <img
                           alt={`${p.title} preview`}
-                          className={`block w-full ${
-                            showExpandedMedia
-                              ? "h-auto object-contain"
-                              : "h-full object-cover"
-                          }`}
+                          className="block h-full w-full object-cover"
                           decoding="async"
                           loading="lazy"
                           src={p.image}
