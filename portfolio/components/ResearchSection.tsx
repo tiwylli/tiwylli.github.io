@@ -16,6 +16,7 @@ import { research } from "@/data/portfolio";
 
 export default function ResearchSection() {
   const [open, setOpen] = useState<Record<string, boolean>>({});
+  const [videoOn, setVideoOn] = useState<Record<string, boolean>>({});
 
   return (
     <section className="scroll-mt-24" id="research">
@@ -24,8 +25,10 @@ export default function ResearchSection() {
         <div className="grid gap-6">
           {research.map((p) => {
             const expanded = Boolean(open[p.title]);
-            const mediaSrc = p.video ?? p.image;
-            const isVideo = Boolean(p.video);
+            const hasVideo = Boolean(p.video);
+            const useVideo =
+              (!p.image && hasVideo) || Boolean(videoOn[p.title]);
+            const mediaSrc = useVideo ? p.video : p.image;
             const showMedia = Boolean(mediaSrc);
             const showExpandedMedia = expanded && showMedia;
             const targetUrl = p.github ?? p.repo ?? p.demo;
@@ -57,7 +60,9 @@ export default function ResearchSection() {
                       </h3>
                       <div className="space-y-3">
                         <div className="flex items-start justify-between gap-3">
-                          <p className="text-body flex-1 dark:text-slate-200">{p.description}</p>
+                          <p className="text-body flex-1 dark:text-slate-200">
+                            {p.description}
+                          </p>
                           {p.details?.length ? (
                             <Button
                               className="border border-green-200 bg-white/80 text-green-800 dark:border-emerald-800/60 dark:bg-slate-800/70 dark:text-emerald-100"
@@ -113,7 +118,25 @@ export default function ResearchSection() {
                             : "aspect-[16/9] max-h-36"
                         }`}
                       >
-                        {isVideo ? (
+                        {hasVideo && (
+                          <Button
+                            className="absolute right-2 top-2 z-10 border border-green-200 bg-white/90 text-green-800 shadow-sm transition hover:-translate-y-0.5 dark:border-emerald-800/60 dark:bg-slate-800/80 dark:text-emerald-100"
+                            size="sm"
+                            variant="flat"
+                            aria-label={useVideo ? "Show image" : "Show video"}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setVideoOn((prev) => ({
+                                ...prev,
+                                [p.title]: !useVideo,
+                              }));
+                            }}
+                          >
+                            {useVideo ? "Show image" : "Show video"}
+                          </Button>
+                        )}
+                        {hasVideo && useVideo ? (
                           <video
                             autoPlay
                             className="block h-full w-full object-cover"
@@ -121,6 +144,7 @@ export default function ResearchSection() {
                             muted
                             playsInline
                             controls={showExpandedMedia}
+                            preload="metadata"
                             src={p.video}
                           />
                         ) : (
