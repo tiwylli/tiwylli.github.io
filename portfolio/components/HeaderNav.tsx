@@ -77,11 +77,26 @@ export default function HeaderNav() {
             aria-controls="mobile-nav"
             aria-expanded={open}
             aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-slate-800 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-green-500 hover:text-green-700 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 sm:hidden"
+            className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-slate-200 bg-white/90 text-slate-800 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-green-500 hover:text-green-700 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 sm:hidden"
             onClick={() => setOpen((prev) => !prev)}
             type="button"
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <Menu
+              className={cn(
+                "absolute h-5 w-5 transition-all duration-200 ease-out",
+                open
+                  ? "scale-75 opacity-0 -rotate-45"
+                  : "scale-100 opacity-100 rotate-0"
+              )}
+            />
+            <X
+              className={cn(
+                "absolute h-5 w-5 transition-all duration-200 ease-out",
+                open
+                  ? "scale-100 opacity-100 rotate-0"
+                  : "scale-75 opacity-0 rotate-45"
+              )}
+            />
           </button>
         </div>
       </div>
@@ -89,7 +104,7 @@ export default function HeaderNav() {
       <div
         aria-hidden={!open}
         className={cn(
-          "fixed inset-0 z-40 bg-black/40 backdrop-blur-sm",
+          "fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-200 ease-out",
           open
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -100,7 +115,7 @@ export default function HeaderNav() {
       <div
         id="mobile-nav"
         className={cn(
-          "fixed top-0 right-0 z-50 h-full w-[82vw] max-w-xs transform bg-white px-5 py-6 shadow-xl sm:hidden",
+          "fixed top-0 right-0 z-50 h-full w-[82vw] max-w-xs transform bg-white px-5 py-6 shadow-xl transition-transform duration-300 ease-in-out sm:hidden",
           open ? "translate-x-0" : "translate-x-full"
         )}
       >
