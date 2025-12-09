@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 export const sectionWrapper =
-  "mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20";
+  "mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20";
 
 type SectionHeadingProps = {
   title: string;
