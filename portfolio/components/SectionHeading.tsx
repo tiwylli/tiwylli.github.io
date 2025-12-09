@@ -20,7 +20,7 @@ export function SectionHeading({
   return (
     <h2
       className={cn(
-        "heading-section mb-10 text-4xl sm:text-5xl text-slate-900",
+        "heading-section mb-10 text-4xl sm:text-5xl text-slate-900 dark:text-slate-50",
         className,
       )}
     >
@@ -28,7 +28,7 @@ export function SectionHeading({
         {accent}
         <span
           aria-hidden
-          className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-green-500"
+          className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-green-500 dark:bg-emerald-300"
         />
       </span>
       {remainder}

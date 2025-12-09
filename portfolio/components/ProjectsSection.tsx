@@ -40,7 +40,7 @@ export default function ProjectsSection() {
             return (
               <Card
                 key={p.title}
-                className={`rounded-xl border border-emerald-200 bg-emerald-50/90 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 ${isClickable ? "cursor-pointer" : ""}`}
+                className={`rounded-xl border border-emerald-200 bg-emerald-50/90 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 dark:border-emerald-800/70 dark:bg-slate-900/70 ${isClickable ? "cursor-pointer" : ""}`}
                 {...clickableProps}
               >
                 <CardBody className="flex flex-col gap-4 pt-4">
@@ -49,16 +49,18 @@ export default function ProjectsSection() {
                       showImage ? "lg:grid-cols-[1.05fr_1fr]" : ""
                     }`}
                   >
-                    <div className="flex flex-col gap-4 text-slate-700">
-                      <h3 className="heading-card text-slate-900">
+                    <div className="flex flex-col gap-4 text-slate-700 dark:text-slate-200">
+                      <h3 className="heading-card text-slate-900 dark:text-slate-100">
                         {p.title}
                       </h3>
                       <div className="space-y-3">
                         <div className="flex items-start justify-between gap-3">
-                          <p className="text-body flex-1">{p.description}</p>
+                          <p className="text-body flex-1 dark:text-slate-200">
+                            {p.description}
+                          </p>
                           {p.details?.length ? (
                             <Button
-                              className="border border-green-200 bg-white/80 text-green-800"
+                              className="border border-green-200 bg-white/80 text-green-800 dark:border-emerald-800/60 dark:bg-slate-800/70 dark:text-emerald-100"
                               isIconOnly
                               size="sm"
                               variant="flat"
@@ -105,7 +107,7 @@ export default function ProjectsSection() {
                     </div>
                     {showImage ? (
                       <div
-                        className={`relative w-full overflow-hidden rounded-lg border border-green-100 bg-white/60 ${
+                        className={`relative w-full overflow-hidden rounded-lg border border-green-100 bg-white/60 dark:border-emerald-800/60 dark:bg-slate-800/60 ${
                           showExpandedMedia
                             ? "flex items-center justify-center self-stretch"
                             : "aspect-[16/9] max-h-36"

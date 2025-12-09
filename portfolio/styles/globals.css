@@ -234,21 +234,21 @@
   .heading-section {
     font-family: var(--font-tektur), var(--font-display), var(--font-sans),
       sans-serif;
-    @apply text-2xl font-bold tracking-tight text-slate-900;
+    @apply text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-50;
   }
 
   .heading-card {
     font-family: var(--font-tektur), var(--font-display), var(--font-sans),
       sans-serif;
-    @apply text-lg font-semibold text-slate-900;
+    @apply text-lg font-semibold text-slate-900 dark:text-slate-50;
   }
 
   .text-body {
-    @apply text-base leading-relaxed text-slate-600;
+    @apply text-base leading-relaxed text-slate-600 dark:text-slate-200;
   }
 
   .text-muted {
-    @apply text-sm text-slate-500;
+    @apply text-sm text-slate-500 dark:text-slate-400;
   }
 
   .nav-link {
@@ -256,6 +256,6 @@
     letter-spacing: 0.28em;
     font-size: 0.95rem;
     /* Force our colors over the default HeroUI link color (text-primary). */
-    @apply font-medium uppercase transition-colors duration-200 !text-slate-700 hover:!text-green-600;
+    @apply font-medium uppercase transition-colors duration-200 !text-slate-700 hover:!text-green-600 dark:!text-slate-200 dark:hover:!text-emerald-300;
   }
 }
