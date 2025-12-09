@@ -12,28 +12,15 @@ import { Chip } from "@heroui/chip";
 import { ChevronDown } from "lucide-react";
 import { projects } from "@/data/portfolio";
 
-const iconPaths = {
-  mail: "/icons/mail.svg",
-  linkedin: "/icons/linkedin.svg",
-  github: "/icons/github.svg",
-} as const;
+import { SectionHeading, sectionWrapper } from "@/components/SectionHeading";
 
 export default function ProjectsSection() {
   const [open, setOpen] = useState<Record<string, boolean>>({});
 
   return (
     <section className="scroll-mt-24" id="projects">
-      <div className="w-full pl-2 pr-8 py-16 text-left">
-        <h2 className="heading-section mb-8 font-tektur text-4xl sm:text-5xl text-slate-900">
-          <span className="relative inline-block">
-            Pr
-            <span
-              aria-hidden
-              className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-green-500"
-            />
-          </span>
-          ojects
-        </h2>
+      <div className={`${sectionWrapper} text-left`}>
+        <SectionHeading title="Projects" />
         <div className="grid gap-6">
           {projects.map((p) => {
             const expanded = Boolean(open[p.title]);
@@ -53,19 +40,17 @@ export default function ProjectsSection() {
             return (
               <Card
                 key={p.title}
-                className={`border border-green-200 bg-emerald-50 shadow-none transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg ${
-                  isClickable ? "cursor-pointer" : ""
-                }`}
+                className={`rounded-xl border border-emerald-200 bg-emerald-50/90 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 ${isClickable ? "cursor-pointer" : ""}`}
                 {...clickableProps}
               >
-                <CardBody className="pt-4">
+                <CardBody className="flex flex-col gap-4 pt-4">
                   <div
-                    className={`grid items-start lg:items-stretch gap-4 ${
+                    className={`grid items-start gap-4 lg:items-stretch ${
                       showImage ? "lg:grid-cols-[1.05fr_1fr]" : ""
                     }`}
                   >
                     <div className="flex flex-col gap-4 text-slate-700">
-                      <h3 className="font-tektur heading-card text-slate-900">
+                      <h3 className="heading-card text-slate-900">
                         {p.title}
                       </h3>
                       <div className="space-y-3">
