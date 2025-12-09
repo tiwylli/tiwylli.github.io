@@ -22,7 +22,7 @@ export default function HomePage() {
           iterations={1000}
           numSites={1000}
           palette={["#ffffffff"]}
-          strokeColor="#0079120b"
+          strokeColor="#0079121e"
         />
         <div className="relative z-10 px-8 sm:px-12 md:px-24">
           <HeaderNav />

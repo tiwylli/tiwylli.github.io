@@ -7,6 +7,7 @@
  */
 
 import { Link } from "@heroui/link";
+import { Menu, X } from "lucide-react";
 import NextLink from "next/link";
 import { useEffect, useState } from "react";
 
@@ -17,6 +18,7 @@ const SCROLL_OFFSET = 96; // pixels (~6rem)
 
 export default function HeaderNav() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > SCROLL_OFFSET);
@@ -27,27 +29,121 @@ export default function HeaderNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  useEffect(() => {
+    const onEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onEscape);
+    return () => window.removeEventListener("keydown", onEscape);
+  }, []);
+
+  const closeMenu = () => setOpen(false);
+
   return (
     <nav
       className={cn(
-        "fixed inset-x-0 top-0 z-30 w-full transition-all duration-300",
-        scrolled
-          ? "bg-white/90 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/75"
-          : "bg-transparent"
+        "fixed inset-x-0 top-0 z-30 w-full",
+        open
+          ? "bg-white shadow-sm"
+          : scrolled
+            ? "bg-white/90 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/75"
+            : "bg-transparent"
       )}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-center gap-4 px-4 py-3 sm:gap-6 sm:px-6 lg:px-8">
-        {navItems.map((item) => (
-          <Link
-            key={item.href}
-            aria-label={item.label}
-            as={NextLink}
-            className="nav-link rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
-            href={item.href}
+      <div className="mx-auto max-w-6xl px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-end sm:justify-center py-3 sm:py-4">
+          <div className="hidden sm:flex flex-nowrap items-center gap-2 sm:gap-3 md:gap-3 lg:gap-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                aria-label={item.label}
+                as={NextLink}
+                className="nav-link flex-shrink-0 whitespace-nowrap rounded-md px-2 py-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                href={item.href}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <button
+            aria-controls="mobile-nav"
+            aria-expanded={open}
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-slate-800 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-green-500 hover:text-green-700 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 sm:hidden"
+            onClick={() => setOpen((prev) => !prev)}
+            type="button"
           >
-            {item.label}
-          </Link>
-        ))}
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
+
+      <div
+        aria-hidden={!open}
+        className={cn(
+          "fixed inset-0 z-40 bg-black/40 backdrop-blur-sm",
+          open
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
+        )}
+        onClick={closeMenu}
+      />
+
+      <div
+        id="mobile-nav"
+        className={cn(
+          "fixed top-0 right-0 z-50 h-full w-[82vw] max-w-xs transform bg-white px-5 py-6 shadow-xl sm:hidden",
+          open ? "translate-x-0" : "translate-x-full"
+        )}
+      >
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-600">
+            Menu
+          </span>
+          <button
+            aria-label="Close navigation menu"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-slate-600 transition hover:bg-emerald-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+            onClick={closeMenu}
+            type="button"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+        <div className="mt-6 flex flex-col divide-y divide-emerald-100">
+          <div className="space-y-3 pb-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                aria-label={item.label}
+                as={NextLink}
+                className="nav-link block rounded-md px-2 py-2 text-base font-semibold tracking-normal text-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                href={item.href}
+                onClick={closeMenu}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <div className="pt-4">
+            <Link
+              aria-label="Back to top"
+              as={NextLink}
+              className="nav-link block rounded-md px-2 py-2 text-base font-semibold tracking-normal text-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+              href="#top"
+              onClick={closeMenu}
+            >
+              Back to top
+            </Link>
+          </div>
+        </div>
       </div>
     </nav>
   );
