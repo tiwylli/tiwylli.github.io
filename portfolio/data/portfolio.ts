@@ -95,43 +95,106 @@ export const research: Project[] = [
 
 export const roles: Role[] = [
   {
-    company: "Acme Corp",
-    title: "Senior Frontend Engineer",
-    period: "2022 — Present",
+    company: "Zebra Technologies",
+    title: "Computer Vision Researcher",
+    period: "October 2025 — Present",
     summary:
-      "Led the development of a component library and migrated key apps to Next.js, improving performance and DX.",
+      "Researching novel computer vision and graphics techniques to enhance industrial vision systems.",
   },
   {
-    company: "Globex",
-    title: "Frontend Engineer",
-    period: "2020 — 2022",
+    company:
+      "CVG Kawasaki Laboratory, Kyushu University | Multimedia Lab & LIVIA, ÉTS",
+    title: "Computer Vision and Graphics Researcher",
+    period: "May 2024 — Nov 2025",
     summary:
-      "Built dashboards and optimized critical rendering paths, reducing bundle size and TTI across projects.",
+      "Published Differentiable Clipped Centroidal Voronoi Tessellation (DCCVT) to extract high-quality meshes from implicit surfaces with PyTorch.",
+    bullets: [
+      "Published a paper at 3DV introducing Differentiable Clipped Centroidal Voronoi Tessellation (DCCVT), paving Voronoi diagrams with differentiable clipped centroids to extract high-quality meshes from implicit surfaces in PyTorch, outperforming state-of-the-art marching tetrahedra and Voronoi-based extraction methods.",
+    ],
+  },
+  {
+    company:
+      "Zebra Technologies | Matrox Imaging Industrial Research Chair, LIVIA",
+    title: "Computer Vision Research Developer",
+    period: "May 2023 — Aug 2023",
+    summary:
+      "Built data and benchmarking pipelines and trained hazard label detection models to improve industrial vision accuracy.",
+    bullets: [
+      "Developed a Python pipeline to augment barcode datasets using C++ and Matrox Imaging Library, generating test files and benchmarks that cut costs by 1,500%.",
+      "Captured real-world hazmat label data, built and augmented a dataset, and trained an RTMDet/YOLO model reaching 98.2% accuracy on video feeds.",
+    ],
+  },
+  {
+    company: "Loto-Québec, Technologies Nter",
+    title: "Analyst Programmer",
+    period: "Jan 2022 — Apr 2022",
+    summary:
+      "Improved Vue.js component performance and refreshed site typography to deliver a more responsive UX.",
+    bullets: [
+      "Developed and optimized multiple Vue.js components for a fluid and responsive UI.",
+      "Proposed a Bootstrap and CSS typography approach that improved responsiveness and consistency.",
+      "Implemented Agile practice improvements, introducing story points for clearer planning.",
+    ],
+  },
+  {
+    company: "Vokeso - Gold Microsoft Partner",
+    title: "Junior Developer",
+    period: "May 2021 — Aug 2021",
+    summary:
+      "Delivered Business Central extensions and web experiences while containerizing services for cleaner deployments.",
+    bullets: [
+      "Developed and customized Microsoft Dynamics 365 Business Central extensions and reports.",
+      "Built a website using HTML, CSS, React.js, PHP, Postman API, and MSSQL.",
+      "Containerized databases and processes with Docker and multiple Azure VMs.",
+    ],
   },
 ];
 
 export const leadership: Role[] = [
   {
-    company: "AI Research Society",
-    title: "President",
-    period: "2024 — Present",
+    company: "École de Technologie Supérieure (ÉTS)",
+    title: "Technology Application Technician",
+    period: "Sep 2021 — May 2024",
     summary:
-      "Led a cross-disciplinary team to host technical workshops, mentorship programs, and hackathons focused on AI safety and computer vision.",
+      "Tutored students for their mechanical, electrical, and optical physics lab activities (ING150, PHY332, PHY335).",
+    bullets: [
+      "Tutored students for their mechanical, electrical, and optical physics lab activities (ING150, PHY332, PHY335).",
+    ],
   },
   {
-    company: "Open Source Guild",
-    title: "Organizer",
-    period: "2022 — 2024",
+    company: "ÉTS Student Association (AÉÉTS)",
+    title: "Software Engineering Representative Administrator",
+    period: "Sep 2021 — May 2024",
     summary:
-      "Coordinated contributor onboarding and release planning, growing active membership and maintaining healthy project velocity.",
+      "Sat on the AÉÉTS board of directors, managing a $1M budget and organizing social and technical activities for software engineering students.",
+    bullets: [
+      "Sat on the AÉÉTS board of directors and managed a $1M budget.",
+      "Organized social and technical activities for software engineering students.",
+    ],
+  },
+  {
+    company: "274e groupe scout St-Ephrem",
+    title: "Scouting Volunteer",
+    period: "Sep 2007 — Present",
+    summary:
+      "Organized fundraisers, educational activities, and camps for kids.",
+    bullets: [
+      "Organized fundraisers, educational activities, and camps for kids.",
+    ],
   },
 ];
 
 export const education: EducationItem[] = [
   {
-    school: "University Name",
-    degree: "B.Sc. in Computer Science",
-    period: "2015 — 2019",
-    summary: "Focused on software engineering, HCI, and web technologies.",
+    school: "Multimedia Lab & ILLS | École de Technologie Supérieure (ÉTS)",
+    degree: "Doctorate of Engineering | Computer Vision & Graphics",
+    period: "Expected Graduation Dec 2027",
+    summary: "Researching computer vision and graphics as part of a fast-track doctoral program.",
+  },
+  {
+    school: "École de Technologie Supérieure (ÉTS)",
+    degree: "Bachelor of Software Engineering",
+    period: "Graduated Aug 2024",
+    summary: "Software engineering degree with applied projects across vision, graphics, and systems.",
   },
 ];
