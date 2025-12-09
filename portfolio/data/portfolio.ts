@@ -59,7 +59,8 @@ export const projects: Project[] = [
     tech: ["Rust"],
     github: "",
     details: ["TODO"],
-    image: "/rendering_engine.png",
+    image: "/f112.png",
+    video: "/render_animation.mp4",
   },
   {
     title: "Numerical Simulation",
@@ -72,7 +73,7 @@ export const projects: Project[] = [
       "Designed and implemented a full C++ linear algebra library with templates, operator overloading, memory management (stack vs heap), and unit testing.",
       "Developed a 2D mass-spring particle simulation engine with numerical integration (implicit Euler), stiffness/mass matrix assembly, and custom linear solvers (Gauss-Seidel, graph-colored Gauss-Seidel, Cholesky).",
     ],
-    image: "/numerical_sim.png",
+    image: "/gti320.png",
   },
 ];
 
@@ -84,8 +85,9 @@ export const research: Project[] = [
       "Novel framework for paving Voronoi diagrams with differentiable clipped centroids to extract high-quality meshes from implicit surfaces using Pytorch, outperforming SotA marching tetrahedra and Voronoi-based extraction methods.",
     tech: ["PyTorch", "Python", "Jupyter Notebook", "CUDA"],
     github: "",
-    // details: [""],
+    details: [":)"],
     image: "/dccvt.png",
+    video: "/OptimComparison.mp4",
   },
 ];
 
