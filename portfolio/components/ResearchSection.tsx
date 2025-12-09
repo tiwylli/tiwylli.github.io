@@ -24,8 +24,10 @@ export default function ResearchSection() {
         <div className="grid gap-6">
           {research.map((p) => {
             const expanded = Boolean(open[p.title]);
-            const showImage = Boolean(p.image);
-            const showExpandedMedia = expanded && showImage;
+            const mediaSrc = p.video ?? p.image;
+            const isVideo = Boolean(p.video);
+            const showMedia = Boolean(mediaSrc);
+            const showExpandedMedia = expanded && showMedia;
             const targetUrl = p.github ?? p.repo ?? p.demo;
             const isClickable = Boolean(targetUrl);
             const clickableProps = isClickable
@@ -46,7 +48,7 @@ export default function ResearchSection() {
                 <CardBody className="flex flex-col gap-4 pt-4">
                   <div
                     className={`grid items-start gap-4 lg:items-stretch ${
-                      showImage ? "lg:grid-cols-[1.05fr_1fr]" : ""
+                      showMedia ? "lg:grid-cols-[1.05fr_1fr]" : ""
                     }`}
                   >
                     <div className="flex flex-col gap-4 text-slate-700 dark:text-slate-200">
@@ -103,7 +105,7 @@ export default function ResearchSection() {
                         ))}
                       </div>
                     </div>
-                    {showImage ? (
+                    {showMedia ? (
                       <div
                         className={`relative w-full overflow-hidden rounded-lg border border-green-100 bg-white/60 dark:border-emerald-800/60 dark:bg-slate-800/60 ${
                           showExpandedMedia
@@ -111,13 +113,25 @@ export default function ResearchSection() {
                             : "aspect-[16/9] max-h-36"
                         }`}
                       >
-                        <img
-                          alt={`${p.title} preview`}
-                          className="block h-full w-full object-cover"
-                          decoding="async"
-                          loading="lazy"
-                          src={p.image}
-                        />
+                        {isVideo ? (
+                          <video
+                            autoPlay
+                            className="block h-full w-full object-cover"
+                            loop
+                            muted
+                            playsInline
+                            controls={showExpandedMedia}
+                            src={p.video}
+                          />
+                        ) : (
+                          <img
+                            alt={`${p.title} preview`}
+                            className="block h-full w-full object-cover"
+                            decoding="async"
+                            loading="lazy"
+                            src={p.image}
+                          />
+                        )}
                       </div>
                     ) : null}
                   </div>
