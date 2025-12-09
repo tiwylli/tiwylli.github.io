@@ -21,7 +21,7 @@ export function TimelineList({ items, className }: TimelineListProps) {
     >
       {items.map(({ company, title, period, bullets }) => (
         <li key={`${company}-${title}`} className="relative">
-          <article className="relative z-10 mx-auto w-full max-w-3xl rounded-xl border border-emerald-200 bg-emerald-50/90 px-6 py-5 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md focus-within:-translate-y-0.5 focus-within:shadow-md dark:border-emerald-800/70 dark:bg-slate-900/70">
+          <article className="relative z-10 w-full rounded-xl border border-emerald-200 bg-emerald-50/90 px-6 py-5 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md focus-within:-translate-y-0.5 focus-within:shadow-md dark:border-emerald-800/70 dark:bg-slate-900/70">
             <span className="absolute left-1/2 top-0 flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center">
               <span className="h-3 w-3 rounded-full bg-emerald-500 ring-4 ring-emerald-100 dark:ring-emerald-900/60" />
             </span>
