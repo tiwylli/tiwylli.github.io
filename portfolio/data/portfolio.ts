@@ -58,9 +58,7 @@ export const projects: Project[] = [
       "Physically based Monte Carlo path tracer in Rust with MIS, Fresnel-aware BSDFs, and emitter sampling for global illumination.",
     tech: ["Rust"],
     github: "",
-    details: [
-      "TODO",
-    ],
+    details: ["TODO"],
     image: "/rendering_engine.png",
   },
   {
@@ -83,12 +81,10 @@ export const research: Project[] = [
     title: "DCCVT: Differentiable Clipped Centroidal Voronoi Tessellation",
     date: "2025",
     description:
-      "Novel framework for paving Voronoi diagrams with differentiable clipped centroids to extract high-quality meshes from implicit surfaces using Pytorch, outperforming SotA marching tetrahedra and Voronoi-based extraction methods.",  
+      "Novel framework for paving Voronoi diagrams with differentiable clipped centroids to extract high-quality meshes from implicit surfaces using Pytorch, outperforming SotA marching tetrahedra and Voronoi-based extraction methods.",
     tech: ["PyTorch", "Python", "Jupyter Notebook", "CUDA"],
     github: "",
-    details: [
-      "",
-    ],
+    // details: [""],
     image: "/dccvt.png",
   },
 ];
@@ -175,7 +171,7 @@ export const leadership: Role[] = [
   {
     company: "274e groupe scout St-Ephrem",
     title: "Scouting Volunteer",
-    period: "Sep 2007 — Present",
+    period: "Sep 2007 — Jan 2023",
     summary:
       "Organized fundraisers, educational activities, and camps for kids.",
     bullets: [
@@ -189,12 +185,14 @@ export const education: EducationItem[] = [
     school: "Multimedia Lab & ILLS | École de Technologie Supérieure (ÉTS)",
     degree: "Doctorate of Engineering | Computer Vision & Graphics",
     period: "Expected Graduation Dec 2027",
-    summary: "Researching computer vision and graphics as part of a fast-track doctoral program.",
+    summary:
+      "Researching computer vision and graphics as part of a fast-track doctoral program.",
   },
   {
     school: "École de Technologie Supérieure (ÉTS)",
     degree: "Bachelor of Software Engineering",
     period: "Graduated Aug 2024",
-    summary: "Software engineering degree with applied projects across vision, graphics, and systems.",
+    summary:
+      "Software engineering degree with applied projects across vision, graphics, and systems.",
   },
 ];

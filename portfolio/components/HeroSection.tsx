@@ -19,7 +19,10 @@ export default function HeroSection() {
           Hello! 👋
         </p>
         <h1 className="text-4xl font-semibold leading-[1.05] text-slate-900 dark:text-slate-50 sm:text-5xl lg:text-6xl">
-          I&apos;m <span className="text-green-700 dark:text-emerald-300">{hero.name}</span>
+          I&apos;m{" "}
+          <span className="text-green-700 dark:text-emerald-300">
+            {hero.name}
+          </span>
         </h1>
         <p className="max-w-3xl text-lg leading-relaxed text-slate-700 dark:text-slate-200 sm:text-xl">
           {hero.intro}

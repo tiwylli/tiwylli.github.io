@@ -26,7 +26,9 @@ export function TimelineList({ items, className }: TimelineListProps) {
               <span className="h-3 w-3 rounded-full bg-emerald-500 ring-4 ring-emerald-100 dark:ring-emerald-900/60" />
             </span>
             <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <h3 className="heading-card text-slate-900 dark:text-slate-100">{title}</h3>
+              <h3 className="heading-card text-slate-900 dark:text-slate-100">
+                {title}
+              </h3>
               <span className="text-xs font-semibold uppercase tracking-wide text-emerald-900/70 dark:text-emerald-200/80">
                 {period}
               </span>
