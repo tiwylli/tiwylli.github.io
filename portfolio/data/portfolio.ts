@@ -52,61 +52,44 @@ export const projects: Project[] = [
     image: "/voronoify.png",
   },
   {
-    title: "Monte Carlo Path Tracer",
+    title: "Rendering Engine – Monte Carlo Path Tracer",
     date: "Sep 2025 - Present",
     description:
       "Physically based Monte Carlo path tracer in Rust with MIS, Fresnel-aware BSDFs, and emitter sampling for global illumination.",
-    tech: ["Rust", "Path Tracing", "MIS", "BSDF"],
-    github: "https://github.com/tiwylli/rust-path-tracer",
+    tech: ["Rust"],
+    github: "",
     details: [
-      "Implements ray generation, intersections, and Fresnel-aware BRDF/BTDF sampling",
-      "Direct and indirect lighting via modular path tracing with emitter sampling",
-      "Variance reduction through MIS and hierarchical light selection",
+      "TODO",
     ],
-    image: "/next.svg",
+    image: "/rendering_engine.png",
   },
   {
-    title: "Numerical Simulation Toolkit",
+    title: "Numerical Simulation",
     date: "Fall 2022",
     description:
       "C++ linear algebra library plus a 2D mass-spring particle simulator with custom solvers and integration schemes.",
-    tech: ["C++", "Linear Algebra", "Simulation"],
-    github: "https://github.com/tiwylli/numerical-sim",
+    tech: ["C++"],
+    github: "",
     details: [
-      "Template-based matrix library with operator overloading and memory management",
-      "Mass-spring engine with implicit Euler integration and stiffness/mass assembly",
-      "Custom solvers including Gauss-Seidel, graph-colored Gauss-Seidel, and Cholesky",
+      "Designed and implemented a full C++ linear algebra library with templates, operator overloading, memory management (stack vs heap), and unit testing.",
+      "Developed a 2D mass-spring particle simulation engine with numerical integration (implicit Euler), stiffness/mass matrix assembly, and custom linear solvers (Gauss-Seidel, graph-colored Gauss-Seidel, Cholesky).",
     ],
-    image: "/next.svg",
+    image: "/numerical_sim.png",
   },
 ];
 
 export const research: Project[] = [
   {
-    title: "Neural Implicit Reconstruction",
-    date: "2024 — Present",
+    title: "DCCVT: Differentiable Clipped Centroidal Voronoi Tessellation",
+    date: "2025",
     description:
-      "Exploring neural implicit surfaces (SDFs/NeRFs) for real-time reconstruction of small-scale objects under sparse views.",
-    tech: ["PyTorch", "CUDA", "NeRF", "SDF"],
-    github: "https://github.com/tiwylli/nerf-implicit",
+      "Novel framework for paving Voronoi diagrams with differentiable clipped centroids to extract high-quality meshes from implicit surfaces using Pytorch, outperforming SotA marching tetrahedra and Voronoi-based extraction methods.",  
+    tech: ["PyTorch", "Python", "Jupyter Notebook", "CUDA"],
+    github: "",
     details: [
-      "Implemented mixed-precision training with occupancy grids for faster convergence on constrained GPUs.",
-      "Benchmarked multi-resolution hash encodings against sinusoidal positional encodings for view consistency.",
+      "",
     ],
-    image: "/next.svg",
-  },
-  {
-    title: "Robust Pose Estimation",
-    date: "2023",
-    description:
-      "Evaluating robust loss functions and RANSAC variants for camera pose estimation on noisy keypoints.",
-    tech: ["Python", "OpenCV", "Ceres"],
-    github: "https://github.com/tiwylli/robust-pose",
-    details: [
-      "Compared PnP solvers (EPnP, RPnP) under increasing outlier ratios with synthetic and real benchmarks.",
-      "Introduced Tukey and Geman-McClure losses into bundle adjustment to improve stability in cluttered scenes.",
-    ],
-    image: "/next.svg",
+    image: "/dccvt.png",
   },
 ];
 

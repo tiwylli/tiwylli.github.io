@@ -232,12 +232,14 @@
   }
 
   .heading-section {
-    font-family: var(--font-display), var(--font-sans), sans-serif;
+    font-family: var(--font-tektur), var(--font-display), var(--font-sans),
+      sans-serif;
     @apply text-2xl font-bold tracking-tight text-slate-900;
   }
 
   .heading-card {
-    font-family: var(--font-display), var(--font-sans), sans-serif;
+    font-family: var(--font-tektur), var(--font-display), var(--font-sans),
+      sans-serif;
     @apply text-lg font-semibold text-slate-900;
   }
 
