@@ -41,7 +41,13 @@ export default function RootLayout({
           fontTektur.variable,
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "system" }}>
+        <Providers
+          themeProps={{
+            attribute: "class",
+            defaultTheme: "light",
+            enableSystem: true,
+          }}
+        >
           <main className="min-h-screen">{children}</main>
         </Providers>
       </body>

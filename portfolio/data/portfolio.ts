@@ -19,6 +19,7 @@ export const navItems: NavItem[] = [
 export const hero: HeroContent = {
   name: "Wylliam Cantin Charawi",
   intro: "Computer Vision & Graphics Research Engineer",
+  resumeUrl: "/WylliamCantinCharawi_Resume_Epic.pdf",
 };
 
 export const socialLinks: SocialLink[] = [
