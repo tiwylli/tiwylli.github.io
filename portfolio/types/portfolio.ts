@@ -6,6 +6,7 @@ export type NavItem = {
 export type HeroContent = {
   name: string;
   intro: string;
+  resumeUrl?: string;
 };
 
 export type SocialLink = {

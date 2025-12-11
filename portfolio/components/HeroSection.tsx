@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@heroui/button";
+
 import { hero, socialLinks } from "@/data/portfolio";
 
 const iconPaths = {
@@ -27,6 +29,20 @@ export default function HeroSection() {
         <p className="max-w-3xl text-lg leading-relaxed text-slate-700 dark:text-slate-200 sm:text-xl">
           {hero.intro}
         </p>
+        {hero.resumeUrl ? (
+          <div className="flex flex-wrap items-center gap-3">
+            <Button
+              as="a"
+              className="border border-green-200 bg-green-600 px-5 py-2 text-base font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-green-700 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 dark:border-emerald-400/70 dark:bg-emerald-600 dark:hover:bg-emerald-500"
+              href={hero.resumeUrl}
+              rel="noreferrer noopener"
+              size="md"
+              target="_blank"
+            >
+              Resume
+            </Button>
+          </div>
+        ) : null}
       </div>
 
       <div className="absolute inset-x-0 bottom-10 sm:bottom-14 md:bottom-16">
