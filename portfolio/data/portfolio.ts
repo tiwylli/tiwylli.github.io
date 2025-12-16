@@ -89,7 +89,7 @@ export const research: Project[] = [
     description:
       "Novel framework for paving Voronoi diagrams with differentiable clipped centroids to extract high-quality meshes from implicit surfaces using Pytorch, outperforming SotA marching tetrahedra and Voronoi-based extraction methods.",
     tech: ["PyTorch", "Python", "Jupyter Notebook", "CUDA"],
-    github: "",
+    github: "http://wylliamcantincharawi.dev/DCCVT.github.io/",
     details: [":)"],
     image: "/dccvt.png",
     video: "/OptimComparison.mp4",
