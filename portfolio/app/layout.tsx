@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: "/favicon.ico",
+    // icon: "/favicon.ico",
+    icon: "dccvt_icon.png",
   },
 };
 
@@ -38,7 +39,7 @@ export default function RootLayout({
           "min-h-screen bg-background font-sans text-foreground antialiased",
           fontSans.variable,
           fontDisplay.variable,
-          fontTektur.variable,
+          fontTektur.variable
         )}
       >
         <Providers
