@@ -54,12 +54,16 @@ export const projects: Project[] = [
   },
   {
     title: "Rendering Engine – Monte Carlo Path Tracer",
-    date: "Sep 2025 - Present",
+    date: "",
     description:
-      "Physically based Monte Carlo path tracer in Rust with MIS, Fresnel-aware BSDFs, and emitter sampling for global illumination.",
-    tech: ["Rust"],
-    github: "",
-    details: ["TODO"],
+      "Physically based Monte Carlo renderer with MIS/NEE, principled BSDFs, hybrid analytic + SDF marching, participating media.",
+    tech: ["Rust", "Python", "Blender"],
+    github: "https://github.com/tiwylli/PBR-Engine",
+    details: [
+      "Global illumination integrators with next-event estimation + multiple importance sampling (BSDF/emitter), including a volumetric MIS path tracer for homogeneous media with Henyey–Greenstein scattering.",
+      "Principled material stack: GGX microfacet with Fresnel/specular transmission, anisotropy + clearcoat, plus specialty materials (car paint, Oren–Nayar, subsurface/translucent) and analytic emitters/spotlights.",
+      "Hybrid scene pipeline combining meshes and raymarched SDFs (noise/fractal caves + CSG ops) with BVH acceleration, plus optional OIDN denoising using albedo/normal AOVs and batch tooling.",
+    ],
     image: "/f112.png",
     video: "/render_animation.mp4",
   },
