@@ -39,6 +39,7 @@ export const about = {
 
 export const projects: Project[] = [
   {
+    slug: "voronoify",
     title: "Voronoify",
     date: "",
     description:
@@ -53,6 +54,7 @@ export const projects: Project[] = [
     image: "/voronoify.png",
   },
   {
+    slug: "monte-carlo-path-tracer",
     title: "Rendering Engine – Monte Carlo Path Tracer",
     date: "",
     description:
@@ -68,6 +70,7 @@ export const projects: Project[] = [
     video: "/render_animation.mp4",
   },
   {
+    slug: "numerical-simulation",
     title: "Numerical Simulation",
     date: "Fall 2022",
     description:
@@ -84,6 +87,7 @@ export const projects: Project[] = [
 
 export const research: Project[] = [
   {
+    slug: "dccvt",
     title: "DCCVT: Differentiable Clipped Centroidal Voronoi Tessellation",
     date: "2025",
     description:
