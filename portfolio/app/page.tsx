@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <main className="relative min-h-screen scroll-smooth bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50">
       <div className="relative z-0 min-h-screen">
-        <BackgroundLayer />
+          <BackgroundLayer density="home" />
         <div className="relative z-10 px-8 sm:px-12 md:px-24">
           <HeaderNav />
           <HeroSection />

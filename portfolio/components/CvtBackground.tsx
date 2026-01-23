@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Delaunay } from "d3-delaunay";
 import { motion } from "framer-motion";
 
@@ -11,11 +11,19 @@ interface CvtBackgroundProps {
   palette?: string[]; // optional color palette
   className?: string; // to control size/position via CSS
   strokeColor?: string; // optional color for cell borders
+  baseWidth?: number; // cached geometry width
+  baseHeight?: number; // cached geometry height
+  position?: "absolute" | "fixed"; // rendering position
 }
 
 interface Cell {
   path: string;
   fill: string;
+}
+
+interface CellGeometry {
+  path: string;
+  colorIndex: number;
 }
 
 const defaultPalette = [
@@ -25,6 +33,19 @@ const defaultPalette = [
   "#020617", // slate-950
   "#0b1120", // navy-ish
 ];
+
+const BASE_WIDTH = 2560;
+const BASE_HEIGHT = 1440;
+const geometryCache = new Map<string, CellGeometry[]>();
+
+function getCacheKey(
+  numSites: number,
+  iterations: number,
+  width: number,
+  height: number,
+) {
+  return `${numSites}:${iterations}:${width}:${height}`;
+}
 
 function polygonToPath(poly: Point[]): string {
   if (!poly.length) return "";
@@ -81,83 +102,23 @@ function polygonCentroid(poly: Point[]): Point {
   return [cx, cy];
 }
 
-const CvtBackground: React.FC<CvtBackgroundProps> = ({
-  numSites = 120,
-  iterations = 3,
-  palette = defaultPalette,
-  className = "",
-  strokeColor = "none",
-}) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [cells, setCells] = useState<Cell[]>([]);
-  const [size, setSize] = useState({ width: 0, height: 0 });
-  const [isVisible, setIsVisible] = useState(false);
+function buildGeometry(
+  numSites: number,
+  iterations: number,
+  width: number,
+  height: number,
+): CellGeometry[] {
+  if (width <= 0 || height <= 0 || numSites <= 0) return [];
 
-  // Handle container resize
-  useEffect(() => {
-    const el = containerRef.current;
+  // 1. Initialize random sites
+  let sites: Point[] = [];
 
-    if (!el) return;
+  for (let i = 0; i < numSites; i++) {
+    sites.push([Math.random() * width, Math.random() * height]);
+  }
 
-    const updateSize = () => {
-      const rect = el.getBoundingClientRect();
-
-      if (rect.width !== size.width || rect.height !== size.height) {
-        setSize({ width: rect.width, height: rect.height });
-      }
-    };
-
-    updateSize();
-    const observer = new ResizeObserver(updateSize);
-
-    observer.observe(el);
-
-    return () => observer.disconnect();
-  }, [size.width, size.height]);
-
-  // Generate CVT whenever size or params change
-  useEffect(() => {
-    const { width, height } = size;
-
-    if (width <= 0 || height <= 0) {
-      setCells([]);
-
-      return;
-    }
-
-    // 1. Initialize random sites
-    let sites: Point[] = [];
-
-    for (let i = 0; i < numSites; i++) {
-      sites.push([Math.random() * width, Math.random() * height]);
-    }
-
-    // 2. Lloyd relaxation for CVT
-    for (let iter = 0; iter < iterations; iter++) {
-      const delaunay = Delaunay.from(
-        sites,
-        (p) => p[0],
-        (p) => p[1],
-      );
-      const voronoi = delaunay.voronoi([0, 0, width, height]);
-
-      const newSites: Point[] = [];
-
-      for (let i = 0; i < sites.length; i++) {
-        const poly = voronoi.cellPolygon(i) as Point[] | null;
-
-        if (!poly || poly.length < 3) {
-          newSites.push(sites[i]);
-          continue;
-        }
-        const centroid = polygonCentroid(poly);
-
-        newSites.push(centroid);
-      }
-      sites = newSites;
-    }
-
-    // 3. Build final Voronoi diagram for rendering
+  // 2. Lloyd relaxation for CVT
+  for (let iter = 0; iter < iterations; iter++) {
     const delaunay = Delaunay.from(
       sites,
       (p) => p[0],
@@ -165,21 +126,105 @@ const CvtBackground: React.FC<CvtBackgroundProps> = ({
     );
     const voronoi = delaunay.voronoi([0, 0, width, height]);
 
-    const newCells: Cell[] = [];
+    const newSites: Point[] = [];
 
     for (let i = 0; i < sites.length; i++) {
       const poly = voronoi.cellPolygon(i) as Point[] | null;
 
-      if (!poly || poly.length < 3) continue;
+      if (!poly || poly.length < 3) {
+        newSites.push(sites[i]);
+        continue;
+      }
+      const centroid = polygonCentroid(poly);
 
-      const path = polygonToPath(poly);
-      const fill = palette[i % palette.length] ?? palette[palette.length - 1];
+      newSites.push(centroid);
+    }
+    sites = newSites;
+  }
 
-      newCells.push({ path, fill });
+  // 3. Build final Voronoi diagram for rendering
+  const delaunay = Delaunay.from(
+    sites,
+    (p) => p[0],
+    (p) => p[1],
+  );
+  const voronoi = delaunay.voronoi([0, 0, width, height]);
+
+  const newCells: CellGeometry[] = [];
+
+  for (let i = 0; i < sites.length; i++) {
+    const poly = voronoi.cellPolygon(i) as Point[] | null;
+
+    if (!poly || poly.length < 3) continue;
+
+    const path = polygonToPath(poly);
+
+    newCells.push({ path, colorIndex: i });
+  }
+
+  return newCells;
+}
+
+const CvtBackground: React.FC<CvtBackgroundProps> = ({
+  numSites = 120,
+  iterations = 3,
+  palette = defaultPalette,
+  className = "",
+  strokeColor = "none",
+  baseWidth = BASE_WIDTH,
+  baseHeight = BASE_HEIGHT,
+  position = "absolute",
+}) => {
+  const resolvedPalette = palette.length ? palette : defaultPalette;
+  const cacheKey = getCacheKey(numSites, iterations, baseWidth, baseHeight);
+  const [geometry, setGeometry] = useState<CellGeometry[] | null>(
+    geometryCache.get(cacheKey) ?? null,
+  );
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const cachedGeometry = geometryCache.get(cacheKey);
+
+    if (cachedGeometry) {
+      setGeometry(cachedGeometry);
+      return;
     }
 
-    setCells(newCells);
-  }, [size, numSites, iterations, palette]);
+    setGeometry(null);
+
+    let cancelled = false;
+    const timeoutId = window.setTimeout(() => {
+      const nextGeometry = buildGeometry(
+        numSites,
+        iterations,
+        baseWidth,
+        baseHeight,
+      );
+
+      geometryCache.set(cacheKey, nextGeometry);
+      if (!cancelled) {
+        setGeometry(nextGeometry);
+      }
+    }, 0);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timeoutId);
+    };
+  }, [baseHeight, baseWidth, cacheKey, iterations, numSites]);
+
+  const cells = useMemo(() => {
+    if (!geometry?.length) return [];
+
+    const paletteLength = resolvedPalette.length;
+    const fallbackColor = resolvedPalette[paletteLength - 1] ?? "#0f172a";
+
+    return geometry.map((cell) => ({
+      path: cell.path,
+      fill:
+        resolvedPalette[cell.colorIndex % paletteLength] ?? fallbackColor,
+    }));
+  }, [geometry, resolvedPalette]);
 
   // Enable a smooth entrance once cells are ready
   useEffect(() => {
@@ -196,16 +241,16 @@ const CvtBackground: React.FC<CvtBackgroundProps> = ({
 
   return (
     <div
-      ref={containerRef}
       className={className}
       style={{
-        position: "absolute",
+        position,
         inset: 0,
         overflow: "hidden",
-        zIndex: -1,
+        pointerEvents: "none",
+        zIndex: position === "fixed" ? 0 : -1,
       }}
     >
-      {size.width > 0 && size.height > 0 && (
+      {cells.length > 0 && (
         <motion.svg
           animate={
             isVisible
@@ -216,11 +261,11 @@ const CvtBackground: React.FC<CvtBackgroundProps> = ({
                 }
               : { opacity: 0, scale: 1.015 }
           }
-          height={size.height}
+          height="100%"
           initial={{ opacity: 0, scale: 1.015 }}
           preserveAspectRatio="xMidYMid slice"
-          viewBox={`0 0 ${size.width} ${size.height}`}
-          width={size.width}
+          viewBox={`0 0 ${baseWidth} ${baseHeight}`}
+          width="100%"
         >
           {cells.map((cell, idx) => (
             <path
