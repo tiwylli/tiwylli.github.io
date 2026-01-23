@@ -7,17 +7,20 @@ import { siteConfig } from "@/config/site";
 import { projects } from "@/data/portfolio";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const project = projects.find((item) => item.slug === params.slug);
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((item) => item.slug === slug);
 
   if (!project) {
     return {};
@@ -52,8 +55,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function ProjectPage({ params }: PageProps) {
-  const project = projects.find((item) => item.slug === params.slug);
+export default async function ProjectPage({ params }: PageProps) {
+  const { slug } = await params;
+  const project = projects.find((item) => item.slug === slug);
 
   if (!project) {
     notFound();
