@@ -189,12 +189,12 @@ export default async function ProjectPage({ params }: PageProps) {
               ) : null}
               {project.demo ? (
                 <a
-                  className="rounded-full border border-green-200 bg-white/80 px-4 py-2 text-sm font-semibold text-green-800 shadow-sm transition hover:-translate-y-0.5 hover:border-green-400 hover:text-green-900 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 dark:border-emerald-800/60 dark:bg-slate-900/70 dark:text-emerald-100"
+                  className="rounded-full border border-emerald-300 bg-white/80 px-4 py-2 text-sm font-semibold text-emerald-700 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-400 hover:text-emerald-800 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 dark:border-emerald-800/60 dark:bg-slate-900/70 dark:text-emerald-100"
                   href={project.demo}
                   rel="noreferrer noopener"
                   target="_blank"
                 >
-                  Live demo
+                  Try live demo
                 </a>
               ) : null}
               {project.repo ? (

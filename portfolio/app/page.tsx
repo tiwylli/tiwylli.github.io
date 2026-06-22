@@ -29,7 +29,7 @@ export default function HomePage() {
           <LeadershipSection />
           <footer className="flex flex-col items-center justify-between gap-3 py-6 text-sm text-slate-500 dark:text-slate-400 sm:flex-row">
             <p className="text-center sm:text-left">
-              © 2025 Wylliam Cantin Charawi — Made with ♥ using Next.js +
+              © 2026 Wylliam Cantin Charawi — Made with ♥ using Next.js +
               HeroUI & GPU-accelerated chaos.
             </p>
             <a

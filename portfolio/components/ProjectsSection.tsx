@@ -26,10 +26,9 @@ export default function ProjectsSection() {
             const useVideo =
               (!p.image && hasVideo) || Boolean(videoOn[p.title]);
             const showMedia = Boolean(p.image || p.video);
-            const targetUrl = p.github ?? p.repo ?? p.demo;
-            const hasExternal = Boolean(targetUrl);
+            const externalUrl = p.github ?? p.repo;
             const externalLabel =
-              targetUrl && targetUrl.includes("github.com")
+              externalUrl && externalUrl.includes("github.com")
                 ? "GitHub"
                 : "Project site";
 
@@ -72,17 +71,30 @@ export default function ProjectsSection() {
                         >
                           Details
                         </Button>
-                        {hasExternal ? (
+                        {externalUrl ? (
                           <Button
                             as="a"
                             className="border border-green-200 bg-white/80 text-green-800 dark:border-emerald-800/60 dark:bg-slate-800/70 dark:text-emerald-100"
-                            href={targetUrl}
+                            href={externalUrl}
                             rel="noreferrer noopener"
                             size="sm"
                             target="_blank"
                             variant="flat"
                           >
                             {externalLabel}
+                          </Button>
+                        ) : null}
+                        {p.demo ? (
+                          <Button
+                            as="a"
+                            className="border border-green-200 bg-white/80 text-green-800 dark:border-emerald-800/60 dark:bg-slate-800/70 dark:text-emerald-100"
+                            href={p.demo}
+                            rel="noreferrer noopener"
+                            size="sm"
+                            target="_blank"
+                            variant="flat"
+                          >
+                            Try live demo
                           </Button>
                         ) : null}
                       </div>
